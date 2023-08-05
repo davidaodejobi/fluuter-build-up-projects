@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/constants/app_colors.dart';
 
 class AppTheme {
   static const String _fontName = 'Nunito';
@@ -11,7 +12,7 @@ class AppTheme {
         // color: AppColors.textColor,
       ),
       displayMedium: TextStyle(
-        fontSize: 48.0,
+        fontSize: 43.0,
         fontWeight: FontWeight.normal,
         // color: AppColors.textColor,
       ),
@@ -27,7 +28,7 @@ class AppTheme {
       ),
       headlineSmall: TextStyle(
         fontSize: 20.0,
-        fontWeight: FontWeight.w500,
+        fontWeight: FontWeight.w400,
         // color: AppColors.textColor,
       ),
       titleLarge: TextStyle(
@@ -67,8 +68,19 @@ class AppTheme {
 
   static darkMode() {
     return ThemeData(
+      scaffoldBackgroundColor: AppColors.backgroundColor,
       brightness: Brightness.dark,
-      primaryColor: Colors.black,
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.backgroundColor,
+        elevation: 20,
+        iconSize: 34,
+        foregroundColor: Colors.white,
+      ),
+      // primaryColor: Colors.black,
       fontFamily: _fontName,
       textTheme: _buildTextTheme(),
     );

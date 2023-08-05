@@ -24,24 +24,20 @@ flutter:
   assets:
     - assets/images/
     - assets/fonts/
+    - assets/svgs/
 
   fonts:
     - family: Nunito
       fonts:
-        - asset: assets/fonts/static/Nunito-Regular.ttf
-        - asset: assets/fonts/static/Nunito-Black.ttf
+        - asset: assets/fonts/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Black.ttf
           weight: 900
-        - asset: assets/fonts/static/Nunito-ExtraBold.ttf
+        - asset: assets/fonts/Nunito-ExtraBold.ttf
           weight: 800
-        - asset: assets/fonts/static/Nunito-Bold.ttf
+        - asset: assets/fonts/Nunito-Bold.ttf
           weight: 700
-        - asset: assets/fonts/static/Nunito-SemiBold.ttf
+        - asset: assets/fonts/Nunito-SemiBold.ttf
           weight: 600
-        - asset: assets/fonts/static/Nunito-Regular.ttf
+        - asset: assets/fonts/Nunito-Regular.ttf
           weight: 500
-        - asset: assets/fonts/static/Nunito-Light.ttf
-          weight: 300
-        - asset: assets/fonts/static/Nunito-ExtraLight.ttf
-          weight: 200
-        - asset: assets/fonts/static/Nunito-Thin.ttf
-          weight: 100
+        - asset: assets/fonts/Nunito-Light.ttf
