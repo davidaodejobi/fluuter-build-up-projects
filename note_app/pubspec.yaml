@@ -1,14 +1,17 @@
 name: note_app
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=2.19.4 <3.0.0'
+  sdk: ">=2.19.4 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  flutter_svg: ^2.0.5
+  # flutter_native_splash:
+  # flutter_launcher_icons:
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +20,28 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/fonts/
+
+  fonts:
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/static/Nunito-Regular.ttf
+        - asset: assets/fonts/static/Nunito-Black.ttf
+          weight: 900
+        - asset: assets/fonts/static/Nunito-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/static/Nunito-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/static/Nunito-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/static/Nunito-Regular.ttf
+          weight: 500
+        - asset: assets/fonts/static/Nunito-Light.ttf
+          weight: 300
+        - asset: assets/fonts/static/Nunito-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/static/Nunito-Thin.ttf
+          weight: 100
