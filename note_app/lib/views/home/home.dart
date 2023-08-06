@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:note_app/shared/appbar_card.dart';
 import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
 
+import '../../shared/navigate_ to_create_page.dart';
+//import '../add-note/add_note.dart';
+
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -28,7 +31,9 @@ class Home extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          createNotePage(context);
+  },
         child: const Icon(Icons.add),
       ),
       body: false
