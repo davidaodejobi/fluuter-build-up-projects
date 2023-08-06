@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/shared/appbar_card.dart';
 
-import '../../shared/navigate_ to_create_page.dart';
-
 class CreateNote extends StatelessWidget {
   const CreateNote({Key? key}) : super(key: key);
 
@@ -28,12 +26,6 @@ class CreateNote extends StatelessWidget {
               onTap: () {},
             ),
           ],
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            createNotePage(context);
-          },
-          child: const Icon(Icons.add),
         ),
         body: Padding(
           padding: const EdgeInsets.all(10.0),
