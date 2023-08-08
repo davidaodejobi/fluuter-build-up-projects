@@ -4,6 +4,7 @@ import 'package:note_app/shared/appbar_card.dart';
 import 'package:note_app/shared/info_alert.dart';
 import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
 import 'package:note_app/views/note-details/note_details.dart';
+import 'package:note_app/views/search-note/search_note.dart';
 
 import '../../shared/navigate_ to_create_page.dart';
 //import '../add-note/add_note.dart';
@@ -25,17 +26,25 @@ class Home extends StatelessWidget {
           AppBarCard(
             icon: 'searchy',
             isFirst: true,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchNote(),
+                ),
+              );
+            },
           ),
           AppBarCard(
             icon: 'info',
             isFirst: false,
             onTap: () => showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => const InfoAlert(
-                      infoText:
-                          "This note application is designed to help its users capture and organize their thoughts, ideas and information.",
-                    )),
+              context: context,
+              builder: (BuildContext context) => const InfoAlert(
+                infoText:
+                    "This note application is designed to help its users capture and organize their thoughts, ideas and information.",
+              ),
+            ),
           ),
         ],
       ),
