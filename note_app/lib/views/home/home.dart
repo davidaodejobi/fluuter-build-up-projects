@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/shared/appbar_card.dart';
 import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
-import 'package:note_app/views/note-details/note_details_main.dart';
+import 'package:note_app/views/note-details/note_details.dart';
 
 import '../../shared/navigate_ to_create_page.dart';
 //import '../add-note/add_note.dart';
