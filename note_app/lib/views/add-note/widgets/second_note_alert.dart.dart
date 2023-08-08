@@ -45,9 +45,7 @@ class SecondNoteAlert extends StatelessWidget {
                 AppColors.errorColor,
               ),
             ),
-            onPressed: () => {
-              print("Hello"),
-            },
+            onPressed: () => {},
             child: Text(
               firstButtonText,
               style: Theme.of(context).textTheme.titleLarge,

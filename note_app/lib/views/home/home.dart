@@ -2,12 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/shared/appbar_card.dart';
 import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
+import 'package:note_app/views/note-details/note_details_main.dart';
 
 import '../../shared/navigate_ to_create_page.dart';
 //import '../add-note/add_note.dart';
 
 class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+  Home({Key? key}) : super(key: key);
+
+  final noteDetail = NoteDetails();
 
   @override
   Widget build(BuildContext context) {
@@ -33,51 +36,12 @@ class Home extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           createNotePage(context);
-  },
+        },
         child: const Icon(Icons.add),
       ),
-      body: false
-          ? ListView(
-              //TODO: code out the note UI
-              children: const [
-                ListTile(
-                  title: Text('Note 1'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 2'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 3'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 4'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 5'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 6'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 7'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-              ],
-            )
-          : const EmptyNotePlaceholder(),
+      body: noteDetail.noteList.isEmpty
+          ? const EmptyNotePlaceholder()
+          : NoteDetails(),
     );
   }
 }
