@@ -24,10 +24,15 @@ class NoteAlert extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       actionsAlignment: MainAxisAlignment.center,
-      actionsPadding: const EdgeInsets.only(bottom: 20.0),
+      actionsPadding: const EdgeInsets.only(
+        bottom: 20.0,
+      ),
       elevation: 50,
       shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10.0),
+        ),
+      ),
       icon: const Icon(
         Icons.info,
         color: AppColors.alertIconColor,
@@ -76,7 +81,7 @@ class NoteAlert extends StatelessWidget {
                 AppColors.successColor,
               ),
             ),
-            onPressed: () => {print("Note Saved!!!")},
+            onPressed: () => {},
             child: Text(
               secondButtonText,
               style: Theme.of(context).textTheme.titleLarge,

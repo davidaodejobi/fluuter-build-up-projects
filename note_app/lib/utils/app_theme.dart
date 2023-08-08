@@ -44,7 +44,7 @@ class AppTheme {
       bodyMedium: TextStyle(
         fontSize: 14.0,
         fontWeight: FontWeight.w400,
-        // color: AppColors.textColor,
+        color: AppColors.alertTextColor,
       ),
       titleMedium: TextStyle(
         fontSize: 14.0,
