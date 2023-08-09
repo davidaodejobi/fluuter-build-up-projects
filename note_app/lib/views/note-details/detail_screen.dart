@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:note_app/constants/notes.dart';
 import 'package:note_app/shared/appbar_card.dart';
 
+import '../edit-note/edit_note.dart';
+
 class DetailScreen extends StatelessWidget {
   const DetailScreen({super.key, required this.note});
 
@@ -20,7 +22,21 @@ class DetailScreen extends StatelessWidget {
           AppBarCard(
             icon: 'edit',
             isFirst: true,
-            onTap: () {},
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditNote(
+                    note: Note(
+                      noteID: note.noteID,
+                      title: note.title,
+                      noteDetail: note.noteDetail,
+                      color: "0xffFFE6FF",
+                    ),
+                  ),
+                ),
+              )
+            },
           ),
         ],
       ),

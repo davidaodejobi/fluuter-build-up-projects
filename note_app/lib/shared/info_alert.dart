@@ -25,7 +25,11 @@ class InfoAlert extends StatelessWidget {
       ),
       content: Text(
         infoText,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: Theme.of(context).textTheme.bodyLarge?.merge(
+              const TextStyle(
+                color: Color.fromRGBO(207, 207, 207, 1),
+              ),
+            ),
       ),
     );
   }

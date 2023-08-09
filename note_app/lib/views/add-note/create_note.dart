@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:note_app/shared/appbar_card.dart';
-import 'package:note_app/views/add-note/widgets/note_alert.dart';
+
+import '../../shared/save_app_bar.dart';
 
 class CreateNote extends StatelessWidget {
   const CreateNote({
@@ -11,34 +11,7 @@ class CreateNote extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: AppBarCard(
-          icon: 'back-arrow',
-          isFirst: true,
-          onTap: () => {Navigator.pop(context)},
-        ),
-        actions: [
-          AppBarCard(
-            icon: 'visibility',
-            isFirst: true,
-            onTap: () {},
-          ),
-          AppBarCard(
-            icon: 'save',
-            isFirst: false,
-            onTap: () => showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => const NoteAlert(
-                titleText: "Save changes ?",
-                firstButtonText: "Discard",
-                secondButtonText: "Save",
-                isTrue: true,
-                isFalse: false,
-              ),
-            ),
-          ),
-        ],
-      ),
+      appBar: saveAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
