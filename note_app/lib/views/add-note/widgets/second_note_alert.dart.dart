@@ -1,22 +1,15 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
+import '../../../constants/alert.dart';
 import '../../../constants/app_colors.dart';
 
 class SecondNoteAlert extends StatelessWidget {
-  final String titleText;
-  final String firstButtonText;
-  final String secondButtonText;
-  final bool isTrue;
-  final bool isFalse;
+  final Alert alert;
 
   const SecondNoteAlert({
     Key? key,
-    required this.titleText,
-    required this.firstButtonText,
-    required this.secondButtonText,
-    required this.isTrue,
-    required this.isFalse,
+    required this.alert,
   }) : super(key: key);
 
   @override
@@ -37,7 +30,7 @@ class SecondNoteAlert extends StatelessWidget {
         color: AppColors.alertIconColor,
       ),
       title: Text(
-        titleText,
+        alert.titleText,
         style: Theme.of(context).textTheme.headlineMedium,
       ),
       actions: <Widget>[
@@ -52,7 +45,7 @@ class SecondNoteAlert extends StatelessWidget {
             ),
             onPressed: () => {},
             child: Text(
-              firstButtonText,
+              alert.firstButtonText,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -71,7 +64,7 @@ class SecondNoteAlert extends StatelessWidget {
             ),
             onPressed: () => {},
             child: Text(
-              secondButtonText,
+              alert.secondButtonText,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),

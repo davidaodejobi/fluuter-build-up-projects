@@ -2,22 +2,15 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/views/add-note/widgets/second_note_alert.dart.dart';
 
+import '../../../constants/alert.dart';
 import '../../../constants/app_colors.dart';
 
 class NoteAlert extends StatelessWidget {
-  final String titleText;
-  final String firstButtonText;
-  final String secondButtonText;
-  final bool isTrue;
-  final bool isFalse;
+  final Alert alert;
 
   const NoteAlert({
     Key? key,
-    required this.titleText,
-    required this.firstButtonText,
-    required this.secondButtonText,
-    required this.isTrue,
-    required this.isFalse,
+    required this.alert,
   }) : super(key: key);
 
   @override
@@ -38,7 +31,7 @@ class NoteAlert extends StatelessWidget {
         color: AppColors.alertIconColor,
       ),
       title: Text(
-        titleText,
+        alert.titleText,
         style: Theme.of(context).textTheme.headlineMedium,
       ),
       actions: <Widget>[
@@ -49,12 +42,14 @@ class NoteAlert extends StatelessWidget {
             onPressed: () => {
               showDialog<String>(
                 context: context,
-                builder: (BuildContext context) => const SecondNoteAlert(
-                  titleText: "Are your sure you want discard your changes ?",
-                  firstButtonText: "Discard",
-                  secondButtonText: "Keep",
-                  isTrue: true,
-                  isFalse: false,
+                builder: (BuildContext context) => SecondNoteAlert(
+                  alert: Alert(
+                      titleText:
+                          "Are your sure you want discard your changes ?",
+                      firstButtonText: "Discard",
+                      secondButtonText: "Keep",
+                      isTrue: true,
+                      isFalse: false),
                 ),
               ),
             },
@@ -64,7 +59,7 @@ class NoteAlert extends StatelessWidget {
               ),
             ),
             child: Text(
-              firstButtonText,
+              alert.firstButtonText,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),
@@ -83,7 +78,7 @@ class NoteAlert extends StatelessWidget {
             ),
             onPressed: () => {},
             child: Text(
-              secondButtonText,
+              alert.secondButtonText,
               style: Theme.of(context).textTheme.titleLarge,
             ),
           ),

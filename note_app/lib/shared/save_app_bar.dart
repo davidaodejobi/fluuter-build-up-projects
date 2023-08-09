@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/constants/alert.dart';
 
 import '../views/add-note/widgets/note_alert.dart';
 import 'appbar_card.dart';
@@ -21,12 +22,18 @@ AppBar saveAppBar(BuildContext context) {
         isFirst: false,
         onTap: () => showDialog<String>(
           context: context,
-          builder: (BuildContext context) => const NoteAlert(
-            titleText: "Save changes ?",
-            firstButtonText: "Discard",
-            secondButtonText: "Save",
-            isTrue: true,
-            isFalse: false,
+          builder: (BuildContext context) => NoteAlert(
+            alert: Alert(
+                titleText: "Save changes ?",
+                firstButtonText: "Discard",
+                secondButtonText: "Save",
+                isTrue: true,
+                isFalse: false),
+            // titleText: "Save changes ?",
+            // firstButtonText: "Discard",
+            // secondButtonText: "Save",
+            // isTrue: true,
+            // isFalse: false,
           ),
         ),
       ),
