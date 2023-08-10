@@ -1,8 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:note_app/views/add-note/widgets/second_note_alert.dart.dart';
+import 'package:note_app/constants/alert.dart';
 
-import '../../../constants/alert.dart';
 import '../../../constants/app_colors.dart';
 
 class NoteAlert extends StatelessWidget {
@@ -26,41 +25,43 @@ class NoteAlert extends StatelessWidget {
           Radius.circular(10.0),
         ),
       ),
-      icon: const Icon(
+      icon: Icon(
         Icons.info,
-        color: AppColors.alertIconColor,
+        color: alert.iconColor,
       ),
       title: Text(
         alert.titleText,
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: alert.titleTextStyle,
       ),
       actions: <Widget>[
         SizedBox(
           width: 112.0,
           height: 39.0,
           child: ElevatedButton(
-            onPressed: () => {
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => SecondNoteAlert(
-                  alert: Alert(
-                      titleText:
-                          "Are your sure you want discard your changes ?",
-                      firstButtonText: "Discard",
-                      secondButtonText: "Keep",
-                      isTrue: true,
-                      isFalse: false),
-                ),
-              ),
-            },
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                AppColors.errorColor,
+                alert.firstButtonColor,
               ),
             ),
+            onPressed: () => {
+              if (alert.secondButtonText == "Save")
+                {
+                  showDialog<String>(
+                      context: context,
+                      builder: (BuildContext context) => alertButton(
+                          alert.firstButtonColor,
+                          alert.secondButtonText,
+                          alert.titleTextStyle,
+                          context)),
+                }
+              else
+                {
+                  //second discard function
+                }
+            },
             child: Text(
               alert.firstButtonText,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: alert.firstTextStyle,
             ),
           ),
         ),
@@ -73,17 +74,38 @@ class NoteAlert extends StatelessWidget {
           child: ElevatedButton(
             style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all<Color>(
-                AppColors.successColor,
+                alert.secondButtonColor,
               ),
             ),
-            onPressed: () => {},
+            onPressed: () => {
+              //Keep button function
+            },
             child: Text(
               alert.secondButtonText,
-              style: Theme.of(context).textTheme.titleLarge,
+              style: alert.secondTextStyle,
             ),
           ),
         ),
       ],
     );
   }
+}
+
+NoteAlert alertButton(
+    Color color, String text, TextStyle? style, BuildContext context) {
+  return NoteAlert(
+    alert: Alert(
+      titleText: "Are you sure you want to discard your changes ?",
+      titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+      firstButtonText: "Discard",
+      secondButtonText: "Keep",
+      iconColor: AppColors.alertIconColor,
+      isTrue: true,
+      isFalse: false,
+      firstTextStyle: Theme.of(context).textTheme.titleLarge,
+      secondTextStyle: Theme.of(context).textTheme.titleLarge,
+      firstButtonColor: AppColors.errorColor,
+      secondButtonColor: AppColors.successColor,
+    ),
+  );
 }

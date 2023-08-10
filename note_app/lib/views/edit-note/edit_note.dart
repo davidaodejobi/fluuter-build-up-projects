@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/notes.dart';
-import '../../shared/save_app_bar.dart';
+import '../../constants/note.dart';
+import '../../shared/edit_app_bar.dart';
 
 class EditNote extends StatefulWidget {
   final Note note;
@@ -24,18 +24,10 @@ class EditNoteState extends State<EditNote> {
   }
 
   @override
-  void dispose() {
-    _titleController.dispose();
-    _noteDetailController.dispose();
-    // _colorController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: saveAppBar(context),
+        appBar: editAppBar(context),
         body: Container(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(

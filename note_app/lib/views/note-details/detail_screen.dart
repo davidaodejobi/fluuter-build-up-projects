@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/constants/notes.dart';
+import 'package:note_app/constants/note.dart';
 import 'package:note_app/shared/appbar_card.dart';
 
 import '../edit-note/edit_note.dart';

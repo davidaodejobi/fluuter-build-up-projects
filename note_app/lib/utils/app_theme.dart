@@ -34,7 +34,7 @@ class AppTheme {
       titleLarge: TextStyle(
         fontSize: 18.0,
         fontWeight: FontWeight.bold,
-        color: Colors.white,
+        // color: AppColors.textColor,
       ),
       bodyLarge: TextStyle(
         fontSize: 16.0,
