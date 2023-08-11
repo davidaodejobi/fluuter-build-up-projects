@@ -1,11 +1,26 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter/material.dart';
-import 'package:note_app/shared/appbar_card.dart';
-import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
+import 'dart:developer';
 
-class Home extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:note_app/models/note.dart';
+import 'package:note_app/shared/appbar_card.dart';
+import 'package:note_app/views/add-note/create_note.dart';
+import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
+import 'package:note_app/views/home/widgets/info_alert.dart';
+import 'package:note_app/views/note-details/note_lists.dart';
+import 'package:note_app/views/search-note/search_note.dart';
+
+import '../../constants/note_list.dart';
+
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<Note> notes = noteList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,61 +33,49 @@ class Home extends StatelessWidget {
           AppBarCard(
             icon: 'searchy',
             isFirst: true,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchNote(),
+                ),
+              );
+            },
           ),
           AppBarCard(
             icon: 'info',
             isFirst: false,
-            onTap: () {},
+            onTap: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => const InfoAlert(
+                infoText:
+                    "This note application is designed to help its users capture and organize their thoughts, ideas and information.",
+              ),
+            ),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CreateNote(),
+            ),
+          ).then((value) {
+            log('I am just coming back from the create note page');
+            setState(() {
+              notes = noteList;
+            });
+          });
+        },
         child: const Icon(Icons.add),
       ),
-      body: false
-          ? ListView(
-              //TODO: code out the note UI
-              children: const [
-                ListTile(
-                  title: Text('Note 1'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 2'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 3'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 4'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 5'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 6'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-                ListTile(
-                  title: Text('Note 7'),
-                  subtitle: Text('This is a note'),
-                  trailing: Icon(Icons.delete),
-                ),
-              ],
-            )
-          : const EmptyNotePlaceholder(),
+      body: noteList.isEmpty
+          ? const EmptyNotePlaceholder()
+          : NoteLists(
+              noteListy: noteList,
+            ),
     );
   }
 }

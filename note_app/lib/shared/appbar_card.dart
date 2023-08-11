@@ -20,6 +20,7 @@ class AppBarCard extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(8.0),
         margin: EdgeInsets.only(
+          left: isFirst ? 10 : 0,
           right: isFirst ? 12 : 16,
           top: 8,
           bottom: 8,
