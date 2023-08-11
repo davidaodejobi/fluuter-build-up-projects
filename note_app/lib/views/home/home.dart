@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:note_app/models/note.dart';
 import 'package:note_app/shared/appbar_card.dart';
 import 'package:note_app/views/add-note/create_note.dart';
 import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
@@ -9,9 +12,15 @@ import 'package:note_app/views/search-note/search_note.dart';
 
 import '../../constants/note_list.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  List<Note> notes = noteList;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,11 +62,20 @@ class Home extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => const CreateNote(),
             ),
-          );
+          ).then((value) {
+            log('I am just coming back from the create note page');
+            setState(() {
+              notes = noteList;
+            });
+          });
         },
         child: const Icon(Icons.add),
       ),
-      body: noteList.isEmpty ? const EmptyNotePlaceholder() : const NoteLists(),
+      body: noteList.isEmpty
+          ? const EmptyNotePlaceholder()
+          : NoteLists(
+              noteListy: noteList,
+            ),
     );
   }
 }
