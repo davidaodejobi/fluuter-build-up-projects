@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:note_app/utils/note_list.dart';
-import 'package:note_app/views/note-details/detail_screen.dart';
+import 'package:note_app/constants/note_list.dart';
+import 'package:note_app/views/edit-note/edit_note.dart';
 import 'package:note_app/views/note-details/widgets/delete_slide.dart';
 
 class NoteLists extends StatefulWidget {
@@ -17,7 +17,7 @@ class NoteListsState extends State<NoteLists> {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.all(20.0),
+      padding: const EdgeInsets.all(12.0),
       itemCount: noteList.length,
       itemBuilder: (context, index) {
         final note = noteList[index];
@@ -39,13 +39,13 @@ class NoteListsState extends State<NoteLists> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => DetailScreen(
+                  builder: (context) => EditNote(
                     note: note,
                   ),
                 ),
               ),
               child: ListTile(
-                contentPadding: const EdgeInsets.all(30.0),
+                contentPadding: const EdgeInsets.all(16.0),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

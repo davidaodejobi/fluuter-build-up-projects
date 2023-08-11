@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import '../../shared/edit_app_bar.dart';
@@ -10,8 +12,14 @@ class CreateNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    log('Create note');
     return Scaffold(
-      appBar: editAppBar(context),
+      appBar: editAppBar(
+        context,
+        onSaveTap: () {
+          log('Helllooooo');
+        },
+      ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(

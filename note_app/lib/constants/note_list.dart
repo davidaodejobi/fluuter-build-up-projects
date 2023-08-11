@@ -1,7 +1,9 @@
-import '../constants/note.dart';
+import '../models/note.dart';
 
-final List<Note> noteList = [
-  Note(
+final List<Note> noteList = [];
+
+/* 
+ Note(
     noteID: 1,
     title: "UI concepts worth existing",
     noteDetail:
@@ -57,4 +59,4 @@ final List<Note> noteList = [
         "UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing UI concepts worth existing",
     color: "0xffD1FFFF",
   ),
-];
+ */

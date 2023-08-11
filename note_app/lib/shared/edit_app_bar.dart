@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:note_app/constants/alert.dart';
-import 'package:note_app/constants/app_colors.dart';
-import 'package:note_app/views/add-note/widgets/note_alert.dart';
 
 import 'appbar_card.dart';
 
-AppBar editAppBar(BuildContext context) {
+AppBar editAppBar(
+  BuildContext context, {
+  required VoidCallback onSaveTap,
+}) {
   return AppBar(
     leading: AppBarCard(
       icon: 'back-arrow',
@@ -21,6 +21,9 @@ AppBar editAppBar(BuildContext context) {
       AppBarCard(
         icon: 'save',
         isFirst: false,
+        onTap: onSaveTap,
+        /* 
+        
         onTap: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => NoteAlert(
@@ -39,6 +42,7 @@ AppBar editAppBar(BuildContext context) {
             ),
           ),
         ),
+         */
       ),
     ],
   );

@@ -1,13 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:note_app/shared/appbar_card.dart';
+import 'package:note_app/views/add-note/create_note.dart';
 import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
 import 'package:note_app/views/home/widgets/info_alert.dart';
 import 'package:note_app/views/note-details/note_lists.dart';
 import 'package:note_app/views/search-note/search_note.dart';
 
-import '../../shared/navigate_ to_create_page.dart';
-import '../../utils/note_list.dart';
+import '../../constants/note_list.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -48,7 +48,12 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          createNotePage(context);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const CreateNote(),
+            ),
+          );
         },
         child: const Icon(Icons.add),
       ),
