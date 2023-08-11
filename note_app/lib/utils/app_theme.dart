@@ -24,7 +24,7 @@ class AppTheme {
       headlineMedium: TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.normal,
-        // color: AppColors.textColor,
+        color: AppColors.alertTextColor,
       ),
       headlineSmall: TextStyle(
         fontSize: 20.0,
@@ -44,7 +44,7 @@ class AppTheme {
       bodyMedium: TextStyle(
         fontSize: 14.0,
         fontWeight: FontWeight.w400,
-        // color: AppColors.textColor,
+        color: AppColors.alertTextColor,
       ),
       titleMedium: TextStyle(
         fontSize: 14.0,

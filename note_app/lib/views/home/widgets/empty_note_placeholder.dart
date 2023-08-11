@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../shared/navigate_ to_create_page.dart';
+
 class EmptyNotePlaceholder extends StatelessWidget {
   const EmptyNotePlaceholder({
     super.key,
@@ -17,9 +19,12 @@ class EmptyNotePlaceholder extends StatelessWidget {
               'assets/images/empty-note.png',
             ),
             const SizedBox(height: 16),
-            Text(
-              'Create your first note !',
-              style: Theme.of(context).textTheme.headlineSmall,
+            GestureDetector(
+              onTap: () => {createNotePage(context)},
+              child: Text(
+                'Create your first note !',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
             ),
           ],
         ),
