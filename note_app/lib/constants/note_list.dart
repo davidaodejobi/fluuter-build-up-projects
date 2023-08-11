@@ -2,7 +2,7 @@ import '../models/note.dart';
 
 final List<Note> noteList = [];
 
-/* 
+/*
  Note(
     noteID: 1,
     title: "UI concepts worth existing",

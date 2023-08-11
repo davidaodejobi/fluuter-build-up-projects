@@ -22,8 +22,8 @@ AppBar editAppBar(
         icon: 'save',
         isFirst: false,
         onTap: onSaveTap,
-        /* 
-        
+        /*
+
         onTap: () => showDialog<String>(
           context: context,
           builder: (BuildContext context) => NoteAlert(
