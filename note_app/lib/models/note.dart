@@ -1,7 +1,7 @@
 class Note {
   final int noteID;
-  final String title;
-  final String noteDetail;
+  String title;
+  String noteDetail;
   final String color;
   Note({
     required this.noteID,

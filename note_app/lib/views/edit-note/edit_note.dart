@@ -1,16 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:developer';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:note_app/constants/note_list.dart';
 
+import '../../constants/note_list.dart';
 import '../../models/note.dart';
 import '../../shared/edit_app_bar.dart';
+import '../home/home.dart';
 
 class EditNote extends StatefulWidget {
   final Note note;
 
-  const EditNote({Key? key, required this.note}) : super(key: key);
+  const EditNote({
+    Key? key,
+    required this.note,
+  }) : super(key: key);
 
   @override
   EditNoteState createState() => EditNoteState();
@@ -19,42 +23,18 @@ class EditNote extends StatefulWidget {
 class EditNoteState extends State<EditNote> {
   late TextEditingController _titleController;
   late TextEditingController _noteDetailController;
+  // late String _noteColor;
+  late int _noteID;
+  bool _isEditing = true;
 
   @override
   void initState() {
     super.initState();
+    _isEditing = true;
     _titleController = TextEditingController(text: widget.note.title);
     _noteDetailController = TextEditingController(text: widget.note.noteDetail);
-  }
-
-  void addNote({
-    required String title,
-    required String noteDetail,
-    required String color,
-  }) {
-    setState(() {
-      noteList.add(Note(
-        noteID: generateNoteID(),
-        title: title,
-        noteDetail: noteDetail,
-        color: color,
-      ));
-    });
-  }
-
-  //generate random id
-  int generateNoteID() {
-    var random = math.Random();
-    return random.nextInt(999999);
-  }
-
-  //genrate random color for example "0xffA7F6A5"
-  String generateRandomColor() {
-    var random = math.Random();
-    int r = random.nextInt(255);
-    int g = random.nextInt(255);
-    int b = random.nextInt(255);
-    return "0xff$r$g$b";
+    // _noteColor = widget.note.color;
+    _noteID = widget.note.noteID;
   }
 
   @override
@@ -62,19 +42,26 @@ class EditNoteState extends State<EditNote> {
     log('Edit note');
     return SafeArea(
       child: Scaffold(
-        appBar: editAppBar(
-          context,
-          onSaveTap: () {
-            log('Helloooooooooooo');
-            // addNote(
-            //   title: _titleController.text,
-            //   noteDetail: _noteDetailController.text,
-            //   color: generateRandomColor(),
-            // );
-            // print('noteList.length: ${noteList.length}');
-            // Navigator.pop(context);
-          },
-        ),
+        appBar: editAppBar(context, onSaveTap: () {
+          String title = _titleController.text;
+          String noteDetail = _noteDetailController.text;
+          // Editing an existing note
+          Note note = widget.note;
+          note.title = title;
+          note.noteDetail = noteDetail;
+          // int id = _noteID;
+
+          int index = noteList.indexWhere((note) => note.noteID == _noteID);
+
+          if (_isEditing) {
+            setState(() {
+              // Update the note in the noteList
+              noteList[index] = note;
+            });
+          }
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Home()));
+        }),
         body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(
