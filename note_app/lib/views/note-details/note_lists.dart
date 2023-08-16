@@ -32,7 +32,7 @@ class NoteListsState extends State<NoteLists> {
             background: deleteSlide(),
             secondaryBackground: deleteSlide(),
             onDismissed: (direction) {
-              final currentContext = context; // Capture the context here
+              final currentContext = context;
 
               SharedPreferences.getInstance().then((prefs) {
                 setState(() {
@@ -43,18 +43,9 @@ class NoteListsState extends State<NoteLists> {
                   const SnackBar(content: Text('Note Deleted')),
                 );
 
-                // Remove note from SharedPreferences
                 prefs.remove('note_${note.noteID}');
               });
             },
-            // onDismissed: (direction) {
-            //   setState(() {
-            //     noteList.removeAt(index);
-            //   });
-            //   ScaffoldMessenger.of(context).showSnackBar(
-            //     const SnackBar(content: Text('Note Deleted')),
-            //   );
-            // },
             child: GestureDetector(
               onTap: () => Navigator.push(
                 context,

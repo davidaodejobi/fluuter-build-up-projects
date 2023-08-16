@@ -2,6 +2,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../constants/note_list.dart';
 import '../../models/note.dart';
@@ -23,9 +24,8 @@ class EditNote extends StatefulWidget {
 class EditNoteState extends State<EditNote> {
   late TextEditingController _titleController;
   late TextEditingController _noteDetailController;
-  // late String _noteColor;
   late int _noteID;
-  bool _isEditing = true;
+  bool _isEditing = false;
 
   @override
   void initState() {
@@ -33,7 +33,6 @@ class EditNoteState extends State<EditNote> {
     _isEditing = true;
     _titleController = TextEditingController(text: widget.note.title);
     _noteDetailController = TextEditingController(text: widget.note.noteDetail);
-    // _noteColor = widget.note.color;
     _noteID = widget.note.noteID;
   }
 
@@ -42,23 +41,28 @@ class EditNoteState extends State<EditNote> {
     log('Edit note');
     return SafeArea(
       child: Scaffold(
-        appBar: editAppBar(context, onSaveTap: () {
+        appBar: editAppBar(context, onSaveTap: () async {
           String title = _titleController.text;
           String noteDetail = _noteDetailController.text;
-          // Editing an existing note
+
+          // Edits an existing note
           Note note = widget.note;
           note.title = title;
           note.noteDetail = noteDetail;
-          // int id = _noteID;
 
           int index = noteList.indexWhere((note) => note.noteID == _noteID);
 
           if (_isEditing) {
             setState(() {
-              // Update the note in the noteList
+              // Updates the note in the noteList
               noteList[index] = note;
             });
           }
+
+          SharedPreferences prefs = await SharedPreferences.getInstance();
+          String noteKey = 'note_$_noteID';
+          prefs.setString(noteKey, note.toJsonString());
+
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => const Home()));
         }),

@@ -1,5 +1,4 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:note_app/models/note.dart';
@@ -63,7 +62,6 @@ class _HomeState extends State<Home> {
               builder: (context) => const CreateNote(),
             ),
           ).then((value) {
-            log('I am just coming back from the create note page');
             setState(() {
               notes = noteList;
             });
@@ -71,11 +69,7 @@ class _HomeState extends State<Home> {
         },
         child: const Icon(Icons.add),
       ),
-      body: noteList.isEmpty
-          ? const EmptyNotePlaceholder()
-          : NoteLists(
-              // noteListy: noteList,
-              ),
+      body: noteList.isEmpty ? const EmptyNotePlaceholder() : NoteLists(),
     );
   }
 }

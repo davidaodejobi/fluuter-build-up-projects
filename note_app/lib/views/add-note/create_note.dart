@@ -29,21 +29,6 @@ class _CreateNoteState extends State<CreateNote> {
     _noteDetailController = TextEditingController();
   }
 
-  // void addNote({
-  //   required String title,
-  //   required String noteDetail,
-  //   required String color,
-  // }) {
-  //   setState(() {
-  //     noteList.add(Note(
-  //       noteID: generateNoteID(),
-  //       title: title,
-  //       noteDetail: noteDetail,
-  //       color: color,
-  //     ));
-  //   });
-  // }
-
   Future<void> addNote({
     required String title,
     required String noteDetail,
@@ -64,9 +49,34 @@ class _CreateNoteState extends State<CreateNote> {
 
     // Update UI state with the new note
     setState(() {
+      // widget.notes.add(note);
       noteList.add(note);
     });
   }
+
+  // Future<void> addNote({
+  //   required String title,
+  //   required String noteDetail,
+  //   required String color,
+  // }) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   int noteID = generateNoteID();
+  //   String noteKey = 'note_$noteID';
+  //   Note note = Note(
+  //     noteID: noteID,
+  //     title: title,
+  //     noteDetail: noteDetail,
+  //     color: color,
+  //   );
+
+  //   // Serialize note object as a string and save to SharedPreferences
+  //   prefs.setString(noteKey, note.toJsonString());
+
+  //   // Update UI state with the new note
+  //   setState(() {
+  //     noteList.add(note);
+  //   });
+  // }
 
   //generate random id
   int generateNoteID() {
