@@ -77,7 +77,7 @@ class _SearchNoteState extends State<SearchNote> {
             ),
             filteredNotes.isEmpty
                 ? const EmptySearch()
-                : Expanded(child: NewWidget(filteredNotes: filteredNotes))
+                : Expanded(child: FilteredNotes(filteredNotes: filteredNotes))
           ],
         ),
       ),
@@ -85,8 +85,8 @@ class _SearchNoteState extends State<SearchNote> {
   }
 }
 
-class NewWidget extends StatelessWidget {
-  const NewWidget({
+class FilteredNotes extends StatelessWidget {
+  const FilteredNotes({
     super.key,
     required this.filteredNotes,
   });
