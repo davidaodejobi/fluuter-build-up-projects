@@ -74,8 +74,8 @@ class _HomeState extends State<Home> {
       body: noteList.isEmpty
           ? const EmptyNotePlaceholder()
           : NoteLists(
-              noteListy: noteList,
-            ),
+              // noteListy: noteList,
+              ),
     );
   }
 }

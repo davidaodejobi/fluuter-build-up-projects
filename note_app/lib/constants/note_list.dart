@@ -1,3 +1,3 @@
 import '../models/note.dart';
 
-final List<Note> noteList = [];
+List<Note> noteList = [];
