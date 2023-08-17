@@ -4,12 +4,13 @@ import 'package:note_app/constants/note_list.dart';
 import 'package:note_app/models/note.dart';
 import 'package:note_app/views/edit-note/edit_note.dart';
 import 'package:note_app/views/note-details/widgets/delete_slide.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class NoteLists extends StatefulWidget {
-  final List<Note> noteListy;
-  const NoteLists({
+  final List<Note> notes = noteList;
+
+  NoteLists({
     Key? key,
-    required this.noteListy,
   }) : super(key: key);
 
   @override
@@ -21,9 +22,9 @@ class NoteListsState extends State<NoteLists> {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.all(12.0),
-      itemCount: widget.noteListy.length,
+      itemCount: widget.notes.length,
       itemBuilder: (context, index) {
-        final note = widget.noteListy[index];
+        final note = widget.notes[index];
         return Padding(
           padding: const EdgeInsets.all(8.0),
           child: Dismissible(
@@ -31,12 +32,19 @@ class NoteListsState extends State<NoteLists> {
             background: deleteSlide(),
             secondaryBackground: deleteSlide(),
             onDismissed: (direction) {
-              setState(() {
-                noteList.removeAt(index);
+              final currentContext = context;
+
+              SharedPreferences.getInstance().then((prefs) {
+                setState(() {
+                  widget.notes.removeAt(index);
+                });
+
+                ScaffoldMessenger.of(currentContext).showSnackBar(
+                  const SnackBar(content: Text('Note Deleted')),
+                );
+
+                prefs.remove('note_${note.noteID}');
               });
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Note Deleted')),
-              );
             },
             child: GestureDetector(
               onTap: () => Navigator.push(

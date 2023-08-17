@@ -1,12 +1,70 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/views/search-note/widgets/empty_search.dart';
 
-class SearchNote extends StatelessWidget {
+import '../../constants/note_list.dart';
+import '../../models/note.dart';
+import '../../shared/appbar_card.dart';
+import '../edit-note/edit_note.dart';
+import '../home/widgets/info_alert.dart';
+
+class SearchNote extends StatefulWidget {
   const SearchNote({
     super.key,
   });
+
+  @override
+  State<SearchNote> createState() => _SearchNoteState();
+}
+
+class _SearchNoteState extends State<SearchNote> {
+  List<Note> filteredNotes = List.from(noteList);
+  late TextEditingController _searchController;
+
+  @override
+  void initState() {
+    super.initState();
+    _searchController = TextEditingController();
+    filteredNotes = List.from(noteList);
+  }
+
+  searchNotes(String query) {
+    print(filteredNotes);
+    setState(() {
+      if (query.isEmpty) {
+        filteredNotes = List.from(noteList);
+        // filteredNotes = [];
+      } else {
+        filteredNotes = noteList.where((note) {
+          return note.title.toLowerCase().contains(query.toLowerCase()) ||
+              note.noteDetail.toLowerCase().contains(query.toLowerCase());
+        }).toList();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: AppBarCard(
+          icon: 'back-arrow',
+          isFirst: true,
+          onTap: () => {Navigator.pop(context)},
+        ),
+        actions: [
+          AppBarCard(
+            icon: 'info',
+            isFirst: false,
+            onTap: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => const InfoAlert(
+                infoText:
+                    "This note application is designed to help its users capture and organize their thoughts, ideas and information.",
+              ),
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [
@@ -14,6 +72,8 @@ class SearchNote extends StatelessWidget {
               padding:
                   const EdgeInsets.symmetric(horizontal: 27.0, vertical: 88.0),
               child: TextField(
+                onChanged: (query) => searchNotes(query),
+                controller: _searchController,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(left: 30.0),
                   filled: true,
@@ -37,30 +97,59 @@ class SearchNote extends StatelessWidget {
                     ),
               ),
             ),
-            Center(
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/empty-search.png',
-                    ),
-                    const SizedBox(height: 16),
-                    GestureDetector(
-                      onTap: () => {},
-                      child: Text(
-                        'File not found. Try searching again.',
-                        style: Theme.of(context).textTheme.headlineSmall,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            )
+            filteredNotes.isEmpty
+                ? const EmptySearch()
+                : Expanded(child: FilteredNotes(filteredNotes: filteredNotes))
           ],
         ),
       ),
+    );
+  }
+}
+
+class FilteredNotes extends StatelessWidget {
+  const FilteredNotes({
+    super.key,
+    required this.filteredNotes,
+  });
+
+  final List<Note> filteredNotes;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: const EdgeInsets.all(12.0),
+      itemCount: filteredNotes.length,
+      itemBuilder: (context, index) {
+        final note = filteredNotes[index];
+        return Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditNote(
+                  note: note,
+                ),
+              ),
+            ),
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(16.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              title: Text(
+                filteredNotes[index].title,
+                style: Theme.of(context)
+                    .textTheme
+                    .headlineMedium
+                    ?.merge(const TextStyle(color: Colors.black)),
+              ),
+              tileColor: Color(int.parse(filteredNotes[index].color)),
+            ),
+          ),
+        );
+      },
     );
   }
 }

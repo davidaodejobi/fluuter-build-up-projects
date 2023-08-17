@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:note_app/constants/note_list.dart';
 import 'package:note_app/models/note.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../shared/edit_app_bar.dart';
 
@@ -28,20 +29,54 @@ class _CreateNoteState extends State<CreateNote> {
     _noteDetailController = TextEditingController();
   }
 
-  void addNote({
+  Future<void> addNote({
     required String title,
     required String noteDetail,
     required String color,
-  }) {
+  }) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int noteID = generateNoteID();
+    String noteKey = 'note_$noteID';
+    Note note = Note(
+      noteID: noteID,
+      title: title,
+      noteDetail: noteDetail,
+      color: color,
+    );
+
+    // Serialize note object as a string and save to SharedPreferences
+    prefs.setString(noteKey, note.toJsonString());
+
+    // Update UI state with the new note
     setState(() {
-      noteList.add(Note(
-        noteID: generateNoteID(),
-        title: title,
-        noteDetail: noteDetail,
-        color: color,
-      ));
+      // widget.notes.add(note);
+      noteList.add(note);
     });
   }
+
+  // Future<void> addNote({
+  //   required String title,
+  //   required String noteDetail,
+  //   required String color,
+  // }) async {
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   int noteID = generateNoteID();
+  //   String noteKey = 'note_$noteID';
+  //   Note note = Note(
+  //     noteID: noteID,
+  //     title: title,
+  //     noteDetail: noteDetail,
+  //     color: color,
+  //   );
+
+  //   // Serialize note object as a string and save to SharedPreferences
+  //   prefs.setString(noteKey, note.toJsonString());
+
+  //   // Update UI state with the new note
+  //   setState(() {
+  //     noteList.add(note);
+  //   });
+  // }
 
   //generate random id
   int generateNoteID() {
@@ -49,13 +84,25 @@ class _CreateNoteState extends State<CreateNote> {
     return random.nextInt(999999);
   }
 
-  //genrate random color for example "0xffA7F6A5"
+  //genrate random bright color for example "0xffA7F6A5"
   String generateRandomColor() {
     var random = math.Random();
-    int r = random.nextInt(255);
-    int g = random.nextInt(255);
-    int b = random.nextInt(255);
-    return "0xff$r$g$b";
+    double hue = random.nextDouble(); // Random hue value between 0 and 1
+    double saturation =
+        random.nextDouble() * 0.5 + 0.5; // Saturation between 0.5 and 1
+    double brightness =
+        random.nextDouble() * 0.4 + 0.6; // Brightness between 0.6 and 1
+
+    int r =
+        HSVColor.fromAHSV(1.0, hue * 360, saturation, brightness).toColor().red;
+    int g = HSVColor.fromAHSV(1.0, hue * 360, saturation, brightness)
+        .toColor()
+        .green;
+    int b = HSVColor.fromAHSV(1.0, hue * 360, saturation, brightness)
+        .toColor()
+        .blue;
+
+    return "0xff${r.toRadixString(16).padLeft(2, '0')}${g.toRadixString(16).padLeft(2, '0')}${b.toRadixString(16).padLeft(2, '0')}";
   }
 
   @override
@@ -65,8 +112,8 @@ class _CreateNoteState extends State<CreateNote> {
       child: Scaffold(
         appBar: editAppBar(
           context,
-          onSaveTap: () {
-            addNote(
+          onSaveTap: () async {
+            await addNote(
               title: _titleController.text,
               noteDetail: _noteDetailController.text,
               color: generateRandomColor(),

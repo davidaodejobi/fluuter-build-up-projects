@@ -13,11 +13,11 @@ AppBar editAppBar(
       onTap: () => {Navigator.pop(context)},
     ),
     actions: [
-      AppBarCard(
-        icon: 'visibility',
-        isFirst: true,
-        onTap: () {},
-      ),
+      // AppBarCard(
+      //   icon: 'visibility',
+      //   isFirst: true,
+      //   onTap: () {},
+      // ),
       AppBarCard(
         icon: 'save',
         isFirst: false,
