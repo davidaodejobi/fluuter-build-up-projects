@@ -34,17 +34,19 @@ class NoteListsState extends State<NoteLists> {
             onDismissed: (direction) {
               final currentContext = context;
 
-              SharedPreferences.getInstance().then((prefs) {
-                setState(() {
-                  widget.notes.removeAt(index);
-                });
+              SharedPreferences.getInstance().then(
+                (prefs) {
+                  setState(() {
+                    widget.notes.removeAt(index);
+                  });
 
-                ScaffoldMessenger.of(currentContext).showSnackBar(
-                  const SnackBar(content: Text('Note Deleted')),
-                );
+                  ScaffoldMessenger.of(currentContext).showSnackBar(
+                    const SnackBar(content: Text('Note Deleted')),
+                  );
 
-                prefs.remove('note_${note.noteID}');
-              });
+                  prefs.remove('note_${note.noteID}');
+                },
+              );
             },
             child: GestureDetector(
               onTap: () => Navigator.push(

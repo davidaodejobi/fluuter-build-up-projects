@@ -45,7 +45,7 @@ class _CreateNoteState extends State<CreateNote> {
     );
 
     // Serialize note object as a string and save to SharedPreferences
-    prefs.setString(noteKey, note.toJsonString());
+    prefs.setString(noteKey, note.toJson());
 
     // Update UI state with the new note
     setState(() {
@@ -53,30 +53,6 @@ class _CreateNoteState extends State<CreateNote> {
       noteList.add(note);
     });
   }
-
-  // Future<void> addNote({
-  //   required String title,
-  //   required String noteDetail,
-  //   required String color,
-  // }) async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   int noteID = generateNoteID();
-  //   String noteKey = 'note_$noteID';
-  //   Note note = Note(
-  //     noteID: noteID,
-  //     title: title,
-  //     noteDetail: noteDetail,
-  //     color: color,
-  //   );
-
-  //   // Serialize note object as a string and save to SharedPreferences
-  //   prefs.setString(noteKey, note.toJsonString());
-
-  //   // Update UI state with the new note
-  //   setState(() {
-  //     noteList.add(note);
-  //   });
-  // }
 
   //generate random id
   int generateNoteID() {

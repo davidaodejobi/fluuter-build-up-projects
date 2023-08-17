@@ -12,7 +12,7 @@ class Note {
     required this.color,
   });
 
-  factory Note.fromJsonString(String jsonString) {
+  factory Note.fromJson(String jsonString) {
     Map<String, dynamic> json = jsonDecode(jsonString);
     return Note(
       noteID: json['noteID'],
@@ -22,7 +22,7 @@ class Note {
     );
   }
 
-  String toJsonString() {
+  String toJson() {
     return jsonEncode({
       'noteID': noteID,
       'title': title,

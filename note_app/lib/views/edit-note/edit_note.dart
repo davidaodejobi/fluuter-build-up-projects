@@ -41,31 +41,38 @@ class EditNoteState extends State<EditNote> {
     log('Edit note');
     return SafeArea(
       child: Scaffold(
-        appBar: editAppBar(context, onSaveTap: () async {
-          String title = _titleController.text;
-          String noteDetail = _noteDetailController.text;
+        appBar: editAppBar(
+          context,
+          onSaveTap: () async {
+            String title = _titleController.text;
+            String noteDetail = _noteDetailController.text;
 
-          // Edits an existing note
-          Note note = widget.note;
-          note.title = title;
-          note.noteDetail = noteDetail;
+            // Edits an existing note
+            Note note = widget.note;
+            note.title = title;
+            note.noteDetail = noteDetail;
 
-          int index = noteList.indexWhere((note) => note.noteID == _noteID);
+            int index = noteList.indexWhere((note) => note.noteID == _noteID);
 
-          if (_isEditing) {
-            setState(() {
-              // Updates the note in the noteList
-              noteList[index] = note;
-            });
-          }
+            if (_isEditing) {
+              setState(() {
+                // Updates the note in the noteList
+                noteList[index] = note;
+              });
+            }
 
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-          String noteKey = 'note_$_noteID';
-          prefs.setString(noteKey, note.toJsonString());
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            String noteKey = 'note_$_noteID';
+            prefs.setString(noteKey, note.toJson());
 
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Home()));
-        }),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const Home(),
+              ),
+            );
+          },
+        ),
         body: Container(
           padding: const EdgeInsets.all(20.0),
           child: Column(

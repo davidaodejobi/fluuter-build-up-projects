@@ -14,7 +14,7 @@ Future<void> main() async {
   for (String key in prefs.getKeys()) {
     if (key.startsWith('note_')) {
       String jsonString = prefs.getString(key) ?? '';
-      Note note = Note.fromJsonString(jsonString);
+      Note note = Note.fromJson(jsonString);
       savedNotes.add(note);
     }
   }
