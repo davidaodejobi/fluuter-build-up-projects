@@ -3,7 +3,9 @@ import 'package:note_app/views/search-note/widgets/empty_search.dart';
 
 import '../../constants/note_list.dart';
 import '../../models/note.dart';
+import '../../shared/appbar_card.dart';
 import '../edit-note/edit_note.dart';
+import '../home/widgets/info_alert.dart';
 
 class SearchNote extends StatefulWidget {
   const SearchNote({
@@ -43,6 +45,26 @@ class _SearchNoteState extends State<SearchNote> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: AppBarCard(
+          icon: 'back-arrow',
+          isFirst: true,
+          onTap: () => {Navigator.pop(context)},
+        ),
+        actions: [
+          AppBarCard(
+            icon: 'info',
+            isFirst: false,
+            onTap: () => showDialog<String>(
+              context: context,
+              builder: (BuildContext context) => const InfoAlert(
+                infoText:
+                    "This note application is designed to help its users capture and organize their thoughts, ideas and information.",
+              ),
+            ),
+          ),
+        ],
+      ),
       body: SafeArea(
         child: Column(
           children: [
