@@ -65,6 +65,8 @@ class EditNoteState extends State<EditNote> {
             String noteKey = 'note_$_noteID';
             prefs.setString(noteKey, note.toJson());
 
+            if (!mounted) return;
+
             Navigator.push(
               context,
               MaterialPageRoute(

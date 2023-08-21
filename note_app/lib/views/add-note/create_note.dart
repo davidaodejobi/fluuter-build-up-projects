@@ -94,6 +94,7 @@ class _CreateNoteState extends State<CreateNote> {
               noteDetail: _noteDetailController.text,
               color: generateRandomColor(),
             );
+            if (!mounted) return;
             Navigator.pop(context);
             _titleController.clear();
             _noteDetailController.clear();
