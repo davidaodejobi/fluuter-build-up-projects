@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:note_app/constants/app_colors.dart';
 import 'package:note_app/constants/note_list.dart';
@@ -22,6 +24,14 @@ class NoteLists extends StatefulWidget {
 }
 
 class NoteListsState extends State<NoteLists> {
+  // int deletedNoteId = 0;
+  // Note saveDeletedNote = Note(
+  //   noteID: 0,
+  //   title: "title",
+  //   noteDetail: "noteDetail",
+  //   color: "color",
+  // );
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -36,21 +46,15 @@ class NoteListsState extends State<NoteLists> {
             background: deleteSlide(),
             secondaryBackground: deleteSlide(),
             onDismissed: (direction) {
-              final currentContext = context;
+              setState(() {
+                widget.notes.removeAt(index);
+                // saveDeletedNote = widget.notes[index];
+                // print(saveDeletedNote);
+              });
 
-              SharedPreferences.getInstance().then(
-                (prefs) {
-                  setState(() {
-                    widget.notes.removeAt(index);
-                  });
-
-                  ScaffoldMessenger.of(currentContext).showSnackBar(
-                    const SnackBar(content: Text('Note Deleted')),
-                  );
-
-                  prefs.remove('note_${note.noteID}');
-                },
-              );
+              SharedPreferences.getInstance().then((prefs) {
+                prefs.remove('note_${note.noteID}');
+              });
             },
             confirmDismiss: (DismissDirection direction) async {
               return await showDialog(
@@ -74,20 +78,28 @@ class NoteListsState extends State<NoteLists> {
                       firstbuttonAction: () {
                         final currentContext = context;
 
-                        SharedPreferences.getInstance().then(
-                          (prefs) {
-                            setState(() {
-                              widget.notes.removeAt(index);
-                            });
+                        Note deletedNote = widget.notes[index];
+                        ScaffoldMessenger.of(currentContext).showSnackBar(
+                          SnackBar(
+                            content: const Text('Note Deleted'),
+                            action: SnackBarAction(
+                              label: 'Undo',
+                              textColor: Colors.red,
+                              onPressed: () {
+                                setState(() {
+                                  widget.notes.insert(index, deletedNote);
+                                });
 
-                            ScaffoldMessenger.of(currentContext).showSnackBar(
-                              const SnackBar(content: Text('Note Deleted')),
-                            );
-
-                            prefs.remove('note_${note.noteID}');
-                          },
+                                SharedPreferences.getInstance().then((prefs) {
+                                  prefs.setString(
+                                    'note_${deletedNote.noteID}',
+                                    jsonEncode(deletedNote.toJson()),
+                                  );
+                                });
+                              },
+                            ),
+                          ),
                         );
-
                         Navigator.of(context).pop(true);
                       },
                       secondButtonAction: () {
