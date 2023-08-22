@@ -2,12 +2,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:note_app/constants/note_list.dart';
+import 'package:note_app/models/note.dart';
+import 'package:note_app/shared/edit_app_bar.dart';
+import 'package:note_app/views/home/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../constants/note_list.dart';
-import '../../models/note.dart';
-import '../../shared/edit_app_bar.dart';
-import '../home/home.dart';
 
 class EditNote extends StatefulWidget {
   final Note note;

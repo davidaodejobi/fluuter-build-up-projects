@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
+import 'package:note_app/constants/note_list.dart';
 import 'package:note_app/models/note.dart';
 import 'package:note_app/shared/appbar_card.dart';
 import 'package:note_app/views/add-note/create_note.dart';
@@ -8,8 +9,6 @@ import 'package:note_app/views/home/widgets/empty_note_placeholder.dart';
 import 'package:note_app/views/home/widgets/info_alert.dart';
 import 'package:note_app/views/note-details/note_lists.dart';
 import 'package:note_app/views/search-note/search_note.dart';
-
-import '../../constants/note_list.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -69,7 +68,7 @@ class _HomeState extends State<Home> {
         },
         child: const Icon(Icons.add),
       ),
-      body: noteList.isEmpty ? const EmptyNotePlaceholder() : NoteLists(),
+      body: noteList.isEmpty ? const EmptyNotePlaceholder() : const NoteLists(),
     );
   }
 }
