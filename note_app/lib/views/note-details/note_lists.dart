@@ -12,8 +12,10 @@ import 'package:note_app/views/note-details/widgets/delete_slide.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class NoteLists extends StatefulWidget {
+  final List<Note> notes;
   const NoteLists({
     Key? key,
+    required this.notes,
   }) : super(key: key);
 
   @override
@@ -21,7 +23,6 @@ class NoteLists extends StatefulWidget {
 }
 
 class NoteListsState extends State<NoteLists> {
-  final List<Note> notes = noteList;
   Note dNote = Note(
     noteID: 0,
     title: "title",
@@ -37,9 +38,9 @@ class NoteListsState extends State<NoteLists> {
         ? const EmptyNotePlaceholder()
         : ListView.builder(
             padding: const EdgeInsets.all(12.0),
-            itemCount: notes.length,
+            itemCount: widget.notes.length,
             itemBuilder: (context, index) {
-              final note = notes[index];
+              final note = widget.notes[index];
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Dismissible(
@@ -51,7 +52,7 @@ class NoteListsState extends State<NoteLists> {
                       dNote = note;
                       deletedIndex = index;
                       isUndo = false;
-                      notes.removeAt(index);
+                      widget.notes.removeAt(index);
                     });
                     Future.delayed(const Duration(seconds: 5), () {});
                   },
@@ -90,7 +91,8 @@ class NoteListsState extends State<NoteLists> {
                                         onPressed: () {
                                           setState(() {
                                             isUndo = true;
-                                            notes.insert(deletedIndex, dNote);
+                                            widget.notes
+                                                .insert(deletedIndex, dNote);
                                           });
                                         },
                                       ),

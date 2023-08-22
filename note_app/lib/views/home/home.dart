@@ -19,6 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Note> notes = noteList;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +69,11 @@ class _HomeState extends State<Home> {
         },
         child: const Icon(Icons.add),
       ),
-      body: noteList.isEmpty ? const EmptyNotePlaceholder() : const NoteLists(),
+      body: noteList.isEmpty
+          ? const EmptyNotePlaceholder()
+          : NoteLists(
+              notes: notes,
+            ),
     );
   }
 }
