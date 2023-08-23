@@ -83,7 +83,8 @@ class NoteListsState extends State<NoteLists> {
                               ScaffoldMessenger.of(currentContext)
                                   .showSnackBar(
                                     SnackBar(
-                                      duration: const Duration(seconds: 5),
+                                      duration:
+                                          const Duration(milliseconds: 700),
                                       content: const Text('Note Deleted'),
                                       action: SnackBarAction(
                                         label: 'Undo',
