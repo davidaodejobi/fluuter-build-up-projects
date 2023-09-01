@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_app/widgets/app_bar.dart';
 
-class WeatherHome extends StatelessWidget {
-  const WeatherHome({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,35 +19,7 @@ class WeatherHome extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          'Mumbai',
-                          style:
-                              Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    color: Colors.black,
-                                  ),
-                        ),
-                        Text(
-                          'Current Location',
-                          style: Theme.of(context).textTheme.labelSmall,
-                        )
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        SvgPicture.asset("assets/svgs/location.svg"),
-                        const SizedBox(
-                          width: 15.0,
-                        ),
-                        SvgPicture.asset("assets/svgs/settings.svg"),
-                      ],
-                    ),
-                  ],
-                ),
+                const LocationAppBar(),
                 Text(
                   "in sync",
                   style: Theme.of(context).textTheme.labelSmall,
@@ -136,6 +109,9 @@ class WeatherHome extends StatelessWidget {
                     ),
                   ],
                 ),
+                const SizedBox(
+                  height: 30.0,
+                )
               ],
             ),
           ),

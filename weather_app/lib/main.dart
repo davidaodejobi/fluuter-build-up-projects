@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:weather_app/utils/app_theme.dart';
-import 'package:weather_app/view/home/weather_app_home.dart';
+import 'package:weather_app/view/home/details_screen.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +28,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightMode(),
-      home: const WeatherHome(),
+      // home: const HomeScreen(),
+      home: const DetailsScreen(),
     );
   }
 }
