@@ -12,6 +12,7 @@ dependencies:
   provider: ^6.0.5
 
   flutter_native_splash: ^2.3.2
+  flutter_svg: ^2.0.7
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +30,10 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/svgs/
+    - assets/fonts/
+
+  fonts:
+    - family: UbuntuCondensed
+      fonts:
+        - asset: assets/fonts/UbuntuCondensed-Regular.ttf
