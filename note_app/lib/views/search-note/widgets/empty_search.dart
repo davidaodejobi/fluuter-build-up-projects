@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/constants/note_list.dart';
 import 'package:note_app/models/note.dart';
-
-import '../../../constants/note_list.dart';
 
 List<Note> notes = List.from(noteList);
 

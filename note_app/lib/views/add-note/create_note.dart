@@ -1,13 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'dart:developer';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:note_app/constants/note_list.dart';
 import 'package:note_app/models/note.dart';
+import 'package:note_app/shared/edit_app_bar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import '../../shared/edit_app_bar.dart';
 
 class CreateNote extends StatefulWidget {
   const CreateNote({
@@ -49,7 +47,6 @@ class _CreateNoteState extends State<CreateNote> {
 
     // Update UI state with the new note
     setState(() {
-      // widget.notes.add(note);
       noteList.add(note);
     });
   }
@@ -83,7 +80,6 @@ class _CreateNoteState extends State<CreateNote> {
 
   @override
   Widget build(BuildContext context) {
-    log('Edit note');
     return SafeArea(
       child: Scaffold(
         appBar: editAppBar(
@@ -94,6 +90,7 @@ class _CreateNoteState extends State<CreateNote> {
               noteDetail: _noteDetailController.text,
               color: generateRandomColor(),
             );
+            if (!mounted) return;
             Navigator.pop(context);
             _titleController.clear();
             _noteDetailController.clear();

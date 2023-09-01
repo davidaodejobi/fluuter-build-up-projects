@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:note_app/constants/note_list.dart';
+import 'package:note_app/models/note.dart';
+import 'package:note_app/shared/appbar_card.dart';
+import 'package:note_app/views/home/widgets/info_alert.dart';
 import 'package:note_app/views/search-note/widgets/empty_search.dart';
 import 'package:note_app/views/search-note/widgets/filtered_note.dart';
-
-import '../../constants/note_list.dart';
-import '../../models/note.dart';
-import '../../shared/appbar_card.dart';
-import '../home/widgets/info_alert.dart';
 
 class SearchNote extends StatefulWidget {
   const SearchNote({
