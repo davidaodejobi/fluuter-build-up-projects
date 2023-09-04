@@ -14,8 +14,8 @@ class DetailsScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(
               top: 30.0,
-              left: 15.0,
-              right: 15.0,
+              left: 25.0,
+              right: 25.0,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,

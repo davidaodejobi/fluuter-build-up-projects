@@ -54,6 +54,10 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    // TemperatureRow(
+                    //   url: "assets/svgs/up_arrow.svg",
+                    //   temperature: "16°C",
+                    // ),
                   ],
                 ),
                 Column(
