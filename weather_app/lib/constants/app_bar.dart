@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:weather_app/view/location/locations.dart';
+import 'package:weather_app/view/settings/settings.dart';
 
 class LocationAppBar extends StatelessWidget {
   const LocationAppBar({
@@ -28,11 +30,19 @@ class LocationAppBar extends StatelessWidget {
         ),
         Row(
           children: [
-            SvgPicture.asset("assets/svgs/location.svg"),
+            GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(LocationsScreen.id);
+                },
+                child: SvgPicture.asset("assets/svgs/location.svg")),
             const SizedBox(
               width: 15.0,
             ),
-            SvgPicture.asset("assets/svgs/settings.svg"),
+            GestureDetector(
+                onTap: () {
+                  Navigator.of(context).pushNamed(SettingsScreen.id);
+                },
+                child: SvgPicture.asset("assets/svgs/settings.svg")),
           ],
         ),
       ],

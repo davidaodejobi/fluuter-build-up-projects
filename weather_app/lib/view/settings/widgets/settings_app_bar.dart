@@ -8,10 +8,15 @@ class SettingsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Icon(
-          Icons.arrow_back_ios,
-          color: AppColors.lightTextColor,
-          size: 15.0,
+        GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: const Icon(
+            Icons.arrow_back_ios,
+            color: AppColors.lightTextColor,
+            size: 15.0,
+          ),
         ),
         Text('Settings', style: Theme.of(context).textTheme.titleLarge),
       ],

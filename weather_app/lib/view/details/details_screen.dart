@@ -4,6 +4,8 @@ import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/view/details/widgets/detail.dart';
 
 class DetailsScreen extends StatelessWidget {
+  static const String id = "details_screen";
+
   const DetailsScreen({super.key});
 
   @override

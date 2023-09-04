@@ -5,6 +5,8 @@ import 'package:weather_app/view/forecast/widgets/daily_forecast.dart';
 import 'package:weather_app/view/forecast/widgets/hourly_forecast.dart';
 
 class ForecastScreen extends StatelessWidget {
+  static const String id = "forecast_screen";
+
   const ForecastScreen({super.key});
 
   @override

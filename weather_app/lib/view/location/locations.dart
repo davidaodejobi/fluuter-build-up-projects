@@ -3,6 +3,8 @@ import 'package:weather_app/view/location/widgets/city_forecast.dart';
 import 'package:weather_app/view/location/widgets/search_location_app_bar.dart';
 
 class LocationsScreen extends StatelessWidget {
+  static const String id = "locations_screen";
+
   const LocationsScreen({super.key});
 
   @override
@@ -17,7 +19,6 @@ class LocationsScreen extends StatelessWidget {
               right: 25.0,
             ),
             child: Column(
-              // mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SearchLocationAppBar(),

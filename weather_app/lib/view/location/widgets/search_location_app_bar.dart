@@ -11,10 +11,15 @@ class SearchLocationAppBar extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Icon(
-              Icons.arrow_back_ios,
-              color: AppColors.lightTextColor,
-              size: 15.0,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios,
+                color: AppColors.lightTextColor,
+                size: 15.0,
+              ),
             ),
             Text('Select City', style: Theme.of(context).textTheme.titleLarge),
           ],

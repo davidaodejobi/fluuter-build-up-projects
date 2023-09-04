@@ -4,6 +4,8 @@ import 'package:weather_app/view/settings/widgets/settings_app_bar.dart';
 import 'package:weather_app/view/settings/widgets/settings_text_widget.dart';
 
 class SettingsScreen extends StatelessWidget {
+  static const String id = "settings_screen";
+
   const SettingsScreen({super.key});
 
   @override
