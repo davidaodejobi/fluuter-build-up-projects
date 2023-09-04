@@ -12,6 +12,8 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox.expand(
@@ -31,10 +33,8 @@ class SettingsScreen extends StatelessWidget {
                     firstlightSubText: "Join the Dark Side!",
                     secondLightText: "Light Theme",
                     secondLightSubText: "Let There be Light!",
-                    isCheckedLightText:
-                        Provider.of<ThemeProvider>(context).isCheckedLightText,
-                    isCheckedLightSubText: Provider.of<ThemeProvider>(context)
-                        .isCheckedLightSubText,
+                    isCheckedLightText: themeData.isCheckedLightText,
+                    isCheckedLightSubText: themeData.isCheckedLightSubText,
                     checklightButton: () {
                       Provider.of<ThemeProvider>(context, listen: false)
                           .toggleThemeMode();

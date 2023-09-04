@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/constants/temperature.dart';
+import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/forecast/widgets/forecast.dart';
 
 class DailyWidget extends ForecastWidget {
@@ -20,6 +22,7 @@ class DailyWidget extends ForecastWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
     return Row(
       children: [
         Column(
@@ -32,15 +35,24 @@ class DailyWidget extends ForecastWidget {
                   children: [
                     Text(
                       time,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: Colors.black),
+                      style: themeData.isLightMode
+                          ? Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(color: Colors.black)
+                          : Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(
                       height: 10.0,
                     ),
-                    SvgPicture.asset(svgUrl),
+                    SvgPicture.asset(
+                      svgUrl,
+                      colorFilter: themeData.isLightMode
+                          ? const ColorFilter.mode(
+                              Colors.black, BlendMode.srcIn)
+                          : const ColorFilter.mode(
+                              Colors.white, BlendMode.srcIn),
+                    ),
                     Temperature(
                       firstUrl: firstUrl,
                       firstTemperature: firstTemperature,

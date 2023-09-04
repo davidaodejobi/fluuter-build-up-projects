@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/utils/theme_provider.dart';
 
 class Details extends StatelessWidget {
   const Details({
@@ -12,6 +14,8 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -24,10 +28,12 @@ class Details extends StatelessWidget {
         ),
         Text(
           value,
-          style: Theme.of(context)
-              .textTheme
-              .titleLarge
-              ?.copyWith(color: Colors.black),
+          style: themeData.isLightMode
+              ? Theme.of(context)
+                  .textTheme
+                  .titleLarge
+                  ?.copyWith(color: Colors.black)
+              : Theme.of(context).textTheme.titleLarge,
         ),
       ],
     );

@@ -3,12 +3,15 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
+import 'package:weather_app/view/details/details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
+
     return Scaffold(
       body: SafeArea(
         child: SizedBox.expand(
@@ -35,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: '22',
-                        style: Provider.of<ThemeProvider>(context).isLightMode
+                        style: themeData.isLightMode
                             ? Theme.of(context)
                                 .textTheme
                                 .displayLarge
@@ -44,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       TextSpan(
                         text: '°C',
-                        style: Provider.of<ThemeProvider>(context).isLightMode
+                        style: themeData.isLightMode
                             ? Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -59,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/up_arrow.svg"),
+                        SvgPicture.asset("assets/svgs/down_arrow.svg"),
                         Text(
                           "16°C",
                           style: Theme.of(context).textTheme.titleLarge,
@@ -71,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/down_arrow.svg"),
+                        SvgPicture.asset("assets/svgs/up_arrow.svg"),
                         Text(
                           "26°C",
                           style: Theme.of(context).textTheme.titleLarge,
@@ -84,12 +87,11 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       "assets/images/drizzle_white.svg",
-                      colorFilter:
-                          Provider.of<ThemeProvider>(context).isLightMode
-                              ? const ColorFilter.mode(
-                                  Colors.black, BlendMode.srcIn)
-                              : const ColorFilter.mode(
-                                  Colors.white, BlendMode.srcIn),
+                      colorFilter: themeData.isLightMode
+                          ? const ColorFilter.mode(
+                              Colors.black, BlendMode.srcIn)
+                          : const ColorFilter.mode(
+                              Colors.white, BlendMode.srcIn),
                     ),
                     // SvgPicture.asset(
                     //   "assets/images/drizzle_white.svg",
@@ -135,9 +137,15 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, DetailsScreen.id);
+                  },
+                  child: const Text("Details"),
+                ),
                 const SizedBox(
                   height: 30.0,
-                )
+                ),
               ],
             ),
           ),

@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/constants/app_bar.dart';
+import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/forecast/widgets/daily_forecast.dart';
 import 'package:weather_app/view/forecast/widgets/hourly_forecast.dart';
 
@@ -11,6 +13,7 @@ class ForecastScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: SizedBox.expand(
@@ -30,7 +33,12 @@ class ForecastScreen extends StatelessWidget {
                 ),
                 Text(
                   "Forecast",
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: themeData.isLightMode
+                      ? Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(color: Colors.black)
+                      : Theme.of(context).textTheme.headlineMedium,
                 ),
                 const SizedBox(
                   height: 60.0,

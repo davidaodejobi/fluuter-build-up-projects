@@ -20,6 +20,8 @@ class CityForecast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
+
     return Column(
       children: [
         Row(
@@ -28,7 +30,13 @@ class CityForecast extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(city, style: Theme.of(context).textTheme.headlineMedium),
+                Text(city,
+                    style: themeData.isLightMode
+                        ? Theme.of(context)
+                            .textTheme
+                            .headlineMedium
+                            ?.copyWith(color: Colors.black)
+                        : Theme.of(context).textTheme.headlineMedium),
                 const SizedBox(
                   height: 5.0,
                 ),
@@ -54,7 +62,7 @@ class CityForecast extends StatelessWidget {
               url,
               width: 40,
               height: 40,
-              colorFilter: Provider.of<ThemeProvider>(context).isLightMode
+              colorFilter: themeData.isLightMode
                   ? const ColorFilter.mode(Colors.black, BlendMode.srcIn)
                   : const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),

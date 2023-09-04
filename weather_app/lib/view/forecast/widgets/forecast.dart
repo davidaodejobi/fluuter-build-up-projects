@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:weather_app/utils/theme_provider.dart';
 
 class ForecastWidget extends StatelessWidget {
   const ForecastWidget({
@@ -14,6 +16,8 @@ class ForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeData = Provider.of<ThemeProvider>(context);
+
     return Row(
       children: [
         Column(
@@ -26,15 +30,24 @@ class ForecastWidget extends StatelessWidget {
                   children: [
                     Text(
                       time,
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(color: Colors.black),
+                      style: themeData.isLightMode
+                          ? Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(color: Colors.black)
+                          : Theme.of(context).textTheme.bodySmall,
                     ),
                     const SizedBox(
                       height: 10.0,
                     ),
-                    SvgPicture.asset(svgUrl)
+                    SvgPicture.asset(
+                      svgUrl,
+                      colorFilter: themeData.isLightMode
+                          ? const ColorFilter.mode(
+                              Colors.black, BlendMode.srcIn)
+                          : const ColorFilter.mode(
+                              Colors.white, BlendMode.srcIn),
+                    )
                   ],
                 ),
                 const SizedBox(
