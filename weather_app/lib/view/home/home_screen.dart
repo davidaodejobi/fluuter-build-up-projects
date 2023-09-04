@@ -3,7 +3,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
-import 'package:weather_app/view/details/details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -137,12 +136,12 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, DetailsScreen.id);
-                  },
-                  child: const Text("Details"),
-                ),
+                // TextButton(
+                //   onPressed: () {
+                //     Navigator.pushNamed(context, DetailsScreen.id);
+                //   },
+                //   child: const Text("Details"),
+                // ),
                 const SizedBox(
                   height: 30.0,
                 ),

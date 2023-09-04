@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/details/widgets/detail.dart';
-import 'package:weather_app/view/forecast/forecast_screen.dart';
 
 class DetailsScreen extends StatelessWidget {
   static const String id = "details_screen";
@@ -44,12 +43,12 @@ class DetailsScreen extends StatelessWidget {
                 const Details(detail: "Visibility", value: "14.83 km"),
                 const Details(detail: "UV", value: "Lowest"),
                 const Details(detail: "Pressure", value: "1012 hPa"),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, ForecastScreen.id);
-                  },
-                  child: const Text("Forecast"),
-                ),
+                // TextButton(
+                //   onPressed: () {
+                //     Navigator.pushNamed(context, ForecastScreen.id);
+                //   },
+                //   child: const Text("Forecast"),
+                // ),
                 const SizedBox(
                   height: 60.0,
                 ),

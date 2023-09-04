@@ -2,28 +2,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/utils/theme_provider.dart';
+import 'package:weather_app/view/settings/widgets/settings_text_widget_without_checkbox.dart';
 
-class SettingsTextWidget extends StatelessWidget {
+class SettingsTextWidget extends SettingsTextWithoutCheckbox {
   const SettingsTextWidget({
-    Key? key,
-    required this.boldText,
-    required this.firstLightText,
-    required this.firstlightSubText,
-    required this.secondLightText,
-    required this.secondLightSubText,
+    super.key,
+    required super.boldText,
+    required super.firstLightText,
+    required super.firstlightSubText,
+    required super.secondLightText,
+    required super.secondLightSubText,
     required this.isCheckedLightText,
     required this.isCheckedLightSubText,
     required this.checklightButton,
-  }) : super(key: key);
+    required this.hideCheckButton,
+  });
 
-  final String boldText;
-  final String firstLightText;
-  final String firstlightSubText;
-  final String secondLightText;
-  final String secondLightSubText;
   final bool isCheckedLightText;
   final bool isCheckedLightSubText;
   final VoidCallback checklightButton;
+  final bool hideCheckButton;
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +50,14 @@ class SettingsTextWidget extends StatelessWidget {
           lightSubText: firstlightSubText,
           isChecked: isCheckedLightText,
           checklightButton: checklightButton,
+          hideCheckButton: hideCheckButton,
         ),
         LightText(
           lightText: secondLightText,
           lightSubText: secondLightSubText,
           isChecked: isCheckedLightSubText,
           checklightButton: checklightButton,
+          hideCheckButton: hideCheckButton,
         ),
       ],
     );
@@ -71,12 +71,14 @@ class LightText extends StatelessWidget {
     required this.lightSubText,
     required this.isChecked,
     required this.checklightButton,
+    required this.hideCheckButton,
   }) : super(key: key);
 
   final String lightText;
   final String lightSubText;
   final bool isChecked;
   final VoidCallback checklightButton;
+  final bool hideCheckButton;
 
   @override
   Widget build(BuildContext context) {
@@ -87,9 +89,9 @@ class LightText extends StatelessWidget {
           lightText,
           style: Theme.of(context).textTheme.titleLarge,
         ),
-        const SizedBox(
-          height: 5.0,
-        ),
+        // const SizedBox(
+        //   height: 5.0,
+        // ),
         GestureDetector(
           onTap: checklightButton,
           child: Row(
@@ -99,15 +101,29 @@ class LightText extends StatelessWidget {
                 lightSubText,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
-              isChecked
-                  ? const Icon(Icons.check)
-                  : const Visibility(visible: false, child: Icon(Icons.check)),
+              hideCheckButton
+                  ? isChecked
+                      // ? const Icon(Icons.check)
+                      // : const Visibility(visible: false, child: Icon(Icons.check)),
+
+                      ? const Checkbox(
+                          value: true,
+                          onChanged: null,
+                        )
+                      : const Checkbox(value: false, onChanged: null)
+                  // : const Visibility(
+                  //     visible: false,
+                  //     child: Checkbox(value: false, onChanged: null),
+                  //   ),
+                  : const SizedBox(
+                      height: 50,
+                    )
             ],
           ),
         ),
-        const SizedBox(
-          height: 20.0,
-        ),
+        // const SizedBox(
+        //   height: 20.0,
+        // ),
       ],
     );
   }
