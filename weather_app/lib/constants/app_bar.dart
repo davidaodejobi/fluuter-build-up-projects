@@ -16,12 +16,7 @@ class LocationAppBar extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              'Mumbai',
-              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Colors.black,
-                  ),
-            ),
+            Text('Mumbai', style: Theme.of(context).textTheme.titleLarge),
             Text(
               'Current Location',
               style: Theme.of(context).textTheme.labelSmall,

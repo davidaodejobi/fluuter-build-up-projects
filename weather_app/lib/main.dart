@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
 import 'package:weather_app/utils/app_theme.dart';
+import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/details/details_screen.dart';
 import 'package:weather_app/view/forecast/forecast_screen.dart';
 import 'package:weather_app/view/home/home.dart';
@@ -11,7 +13,11 @@ import 'package:weather_app/view/settings/settings.dart';
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  runApp(const MainApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) {
+        return ThemeProvider();
+      },
+      child: const MainApp()));
   FlutterNativeSplash.remove();
 }
 
@@ -33,8 +39,10 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightMode(),
-      // home: const HomeScreen(),
-      // home: const SettingsScreen(),
+      darkTheme: AppTheme.darkMode(),
+      themeMode: Provider.of<ThemeProvider>(context).isLightMode
+          ? ThemeMode.light
+          : ThemeMode.dark,
       initialRoute: Home.id,
       routes: {
         Home.id: (context) => const HomeScreen(),

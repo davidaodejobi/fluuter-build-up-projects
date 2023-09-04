@@ -9,7 +9,6 @@ class AppTheme {
       displayLarge: TextStyle(
         fontSize: 96.0,
         fontWeight: FontWeight.bold,
-        color: AppColors.darkTextColor,
       ),
       displayMedium: TextStyle(
         fontSize: 43.0,
@@ -18,12 +17,10 @@ class AppTheme {
       displaySmall: TextStyle(
         fontSize: 34.0,
         fontWeight: FontWeight.bold,
-        color: AppColors.darkTextColor,
       ),
       headlineMedium: TextStyle(
         fontSize: 24.0,
         fontWeight: FontWeight.w400,
-        color: AppColors.darkTextColor,
       ),
       headlineSmall: TextStyle(
         fontSize: 20.0,
@@ -63,6 +60,19 @@ class AppTheme {
 
   static lightMode() {
     return ThemeData(
+      fontFamily: _fontName,
+      textTheme: _buildTextTheme(),
+    );
+  }
+
+  static darkMode() {
+    return ThemeData(
+      scaffoldBackgroundColor: AppColors.backgroundColor,
+      brightness: Brightness.dark,
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: Colors.black,
+      ),
       fontFamily: _fontName,
       textTheme: _buildTextTheme(),
     );
