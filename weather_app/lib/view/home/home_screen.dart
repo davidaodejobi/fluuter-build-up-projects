@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:weather_app/widgets/app_bar.dart';
+import 'package:weather_app/constants/app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -42,15 +42,6 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Row(
-                      children: [
-                        SvgPicture.asset("assets/svgs/down_arrow.svg"),
-                        Text(
-                          "16°C",
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ],
-                    ),
                     const SizedBox(
                       width: 25.0,
                     ),
