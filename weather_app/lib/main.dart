@@ -13,12 +13,13 @@ import 'package:weather_app/view/settings/settings.dart';
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+  FlutterNativeSplash.remove();
+
   runApp(ChangeNotifierProvider(
       create: (context) {
         return ThemeProvider();
       },
       child: const MainApp()));
-  FlutterNativeSplash.remove();
 }
 
 class MainApp extends StatelessWidget {
