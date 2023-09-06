@@ -2,8 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:note_app/constants/alert.dart';
 
-import '../../../constants/app_colors.dart';
-
 class NoteAlert extends StatelessWidget {
   final Alert alert;
 
@@ -43,22 +41,7 @@ class NoteAlert extends StatelessWidget {
                 alert.firstButtonColor,
               ),
             ),
-            onPressed: () => {
-              if (alert.secondButtonText == "Save")
-                {
-                  showDialog<String>(
-                      context: context,
-                      builder: (BuildContext context) => alertButton(
-                          alert.firstButtonColor,
-                          alert.secondButtonText,
-                          alert.titleTextStyle,
-                          context)),
-                }
-              else
-                {
-                  //second discard function
-                }
-            },
+            onPressed: alert.firstbuttonAction,
             child: Text(
               alert.firstButtonText,
               style: alert.firstTextStyle,
@@ -77,9 +60,7 @@ class NoteAlert extends StatelessWidget {
                 alert.secondButtonColor,
               ),
             ),
-            onPressed: () => {
-              //Keep button function
-            },
+            onPressed: alert.secondButtonAction,
             child: Text(
               alert.secondButtonText,
               style: alert.secondTextStyle,
@@ -91,21 +72,21 @@ class NoteAlert extends StatelessWidget {
   }
 }
 
-NoteAlert alertButton(
-    Color color, String text, TextStyle? style, BuildContext context) {
-  return NoteAlert(
-    alert: Alert(
-      titleText: "Are you sure you want to discard your changes ?",
-      titleTextStyle: Theme.of(context).textTheme.headlineMedium,
-      firstButtonText: "Discard",
-      secondButtonText: "Keep",
-      iconColor: AppColors.alertIconColor,
-      isTrue: true,
-      isFalse: false,
-      firstTextStyle: Theme.of(context).textTheme.titleLarge,
-      secondTextStyle: Theme.of(context).textTheme.titleLarge,
-      firstButtonColor: AppColors.errorColor,
-      secondButtonColor: AppColors.successColor,
-    ),
-  );
-}
+// NoteAlert alertButton(
+//     Color color, String text, TextStyle? style, BuildContext context) {
+//   return NoteAlert(
+//     alert: Alert(
+//       titleText: "Are you sure you want to discard your changes ?",
+//       titleTextStyle: Theme.of(context).textTheme.headlineMedium,
+//       firstButtonText: "Discard",
+//       secondButtonText: "Keep",
+//       iconColor: AppColors.alertIconColor,
+//       isTrue: true,
+//       isFalse: false,
+//       firstTextStyle: Theme.of(context).textTheme.titleLarge,
+//       secondTextStyle: Theme.of(context).textTheme.titleLarge,
+//       firstButtonColor: AppColors.errorColor,
+//       secondButtonColor: AppColors.successColor,
+//     ),
+//   );
+// }
