@@ -3,6 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/view_model/home_viewmodel.dart';
 
 class Home extends StatelessWidget {
+  static const String id = "home_screen";
+
   const Home({Key? key}) : super(key: key);
 
   @override
