@@ -1,29 +1,60 @@
 import 'dart:collection';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/models/location.dart';
 
 class LocationData extends ChangeNotifier {
-  final List<Location> _locationList = [
-    Location("Ilorin", -16),
-    Location("Lagos", -26),
-    Location("Abuja", 30),
-  ];
+  List<Location> _cityList = [];
 
-  UnmodifiableListView<Location> get locationList {
-    return UnmodifiableListView(_locationList);
+  UnmodifiableListView<Location> get cityList {
+    return UnmodifiableListView(_cityList);
   }
 
-  int get locationListLength {
-    return locationList.length;
-  }
-
-  void addNewLocation(String city, int temperature, String weatherCondition) {
-    _locationList.add(
-      Location(city, temperature),
-    );
+  Future<void> addNewCity(
+    String city,
+    int temperature,
+    String weatherCondition,
+  ) async {
+    final newCity = Location(city, temperature);
+    _cityList.add(newCity);
+    await saveCity();
     notifyListeners();
   }
+
+  Future<void> saveCity() async {
+    final prefs = await SharedPreferences.getInstance();
+    final citiesJsonList = _cityList.map((city) => city.toJson()).toList();
+    await prefs.setStringList(
+        'cities', citiesJsonList.map((e) => e.toString()).toList());
+  }
+
+  Future<void> displayCities() async {
+    final prefs = await SharedPreferences.getInstance();
+    final citiesJsonList = prefs.getStringList('cities') ?? [];
+
+    _cityList =
+        citiesJsonList.map((cityJson) => Location.fromJson(cityJson)).toList();
+
+    notifyListeners();
+  }
+
+  // final List<Location> _cityList = [
+  //   Location("Ilorin", -16),
+  //   Location("Lagos", -26),
+  //   Location("Abuja", 30),
+  // ];
+
+  int get locationListLength {
+    return cityList.length;
+  }
+
+  // void addNewLocation(String city, int temperature, String weatherCondition) {
+  //   _locationList.add(
+  //     Location(city, temperature),
+  //   );
+  //   notifyListeners();
+  // }
 
   String getWeatherIconUrl(int temperature) {
     if (temperature > 30) {

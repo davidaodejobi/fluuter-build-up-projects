@@ -46,7 +46,7 @@ class AddLocation extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    locationData.addNewLocation(newCity, -10, "Light Drizzle");
+                    locationData.addNewCity(newCity, -10, "Light Drizzle");
 
                     Navigator.pop(context);
                   },
