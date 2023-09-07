@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
         child: SizedBox.expand(
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 30.0,
+              top: 10.0,
               left: 15.0,
               right: 15.0,
             ),
@@ -136,12 +136,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                // TextButton(
-                //   onPressed: () {
-                //     Navigator.pushNamed(context, DetailsScreen.id);
-                //   },
-                //   child: const Text("Details"),
-                // ),
                 const SizedBox(
                   height: 30.0,
                 ),

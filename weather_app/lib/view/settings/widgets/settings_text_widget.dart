@@ -26,7 +26,7 @@ class SettingsTextWidget extends StatelessWidget {
         const SizedBox(
           height: 20.0,
         ),
-        GestureDetector(
+        InkWell(
           onTap: checkIconButton,
           child: HeaderCheckBox(
             headerText: headerText,
