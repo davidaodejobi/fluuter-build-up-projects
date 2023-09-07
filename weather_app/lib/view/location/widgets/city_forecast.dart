@@ -30,13 +30,15 @@ class CityForecast extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(city,
-                    style: themeData.isLightMode
-                        ? Theme.of(context)
-                            .textTheme
-                            .headlineMedium
-                            ?.copyWith(color: Colors.black)
-                        : Theme.of(context).textTheme.headlineMedium),
+                Text(
+                  city,
+                  style: themeData.isLightMode
+                      ? Theme.of(context)
+                          .textTheme
+                          .headlineMedium
+                          ?.copyWith(color: Colors.black)
+                      : Theme.of(context).textTheme.headlineMedium,
+                ),
                 const SizedBox(
                   height: 5.0,
                 ),
@@ -53,11 +55,6 @@ class CityForecast extends StatelessWidget {
                 ),
               ],
             ),
-            // Image.asset(
-            //   url,
-            //   width: 40.0,
-            //   height: 40.0,
-            // ),
             SvgPicture.asset(
               url,
               width: 40,
@@ -69,7 +66,7 @@ class CityForecast extends StatelessWidget {
           ],
         ),
         const SizedBox(
-          height: 45.0,
+          height: 30.0,
         ),
       ],
     );

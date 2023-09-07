@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/models/location_data.dart';
 import 'package:weather_app/view/details/details_screen.dart';
+import 'package:weather_app/view/location/widgets/add_location.dart';
 import 'package:weather_app/view/location/widgets/city_forecast.dart';
 import 'package:weather_app/view/location/widgets/search_location_app_bar.dart';
 
@@ -26,7 +27,22 @@ class LocationsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SearchLocationAppBar(),
+                    SearchLocationAppBar(
+                      addLocation: () {
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (context) => SingleChildScrollView(
+                            child: Container(
+                                padding: EdgeInsets.only(
+                                    bottom: MediaQuery.of(context)
+                                        .viewInsets
+                                        .bottom),
+                                child: const AddLocation()),
+                          ),
+                        );
+                      },
+                    ),
                     const SizedBox(
                       height: 30.0,
                     ),

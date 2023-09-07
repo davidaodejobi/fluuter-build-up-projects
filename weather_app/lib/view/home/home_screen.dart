@@ -61,7 +61,11 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/down_arrow.svg"),
+                        // SvgPicture.asset("assets/svgs/down_arrow.svg"),
+                        const Icon(
+                          Icons.south,
+                          size: 20,
+                        ),
                         Text(
                           "16°C",
                           style: Theme.of(context).textTheme.titleLarge,
@@ -73,7 +77,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/up_arrow.svg"),
+                        // SvgPicture.asset("assets/svgs/up_arrow.svg"),
+                        const Icon(
+                          Icons.north,
+                          size: 20,
+                        ),
                         Text(
                           "26°C",
                           style: Theme.of(context).textTheme.titleLarge,
@@ -109,7 +117,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/sunrise.svg"),
+                        SvgPicture.asset(
+                          "assets/svgs/sunrise.svg",
+                          colorFilter: themeData.isLightMode
+                              ? const ColorFilter.mode(
+                                  Colors.black, BlendMode.srcIn)
+                              : const ColorFilter.mode(
+                                  Colors.white, BlendMode.srcIn),
+                        ),
                         const SizedBox(
                           width: 10.0,
                         ),
@@ -124,7 +139,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/sunrise.svg"),
+                        SvgPicture.asset(
+                          "assets/svgs/sunrise.svg",
+                          colorFilter: themeData.isLightMode
+                              ? const ColorFilter.mode(
+                                  Colors.black, BlendMode.srcIn)
+                              : const ColorFilter.mode(
+                                  Colors.white, BlendMode.srcIn),
+                        ),
                         const SizedBox(
                           width: 10.0,
                         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/constants/app_colors.dart';
 
 class SettingsAppBar extends StatelessWidget {
   const SettingsAppBar({super.key});
@@ -8,14 +7,13 @@ class SettingsAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        GestureDetector(
+        InkWell(
           onTap: () {
             Navigator.pop(context);
           },
           child: const Icon(
             Icons.arrow_back_ios,
-            color: AppColors.lightTextColor,
-            size: 15.0,
+            size: 20.0,
           ),
         ),
         Text('Settings', style: Theme.of(context).textTheme.titleLarge),
