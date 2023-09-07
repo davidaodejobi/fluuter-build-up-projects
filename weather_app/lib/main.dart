@@ -37,15 +37,18 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    loadThemeMode();
+    // WidgetsBinding.instance.addPostFrameCallback((_) {
+    //   loadThemeMode();
+    // });
+
+    loadThemeMode().whenComplete(() => null);
   }
 
   Future<void> loadThemeMode() async {
-    final themeProvider = Provider.of<ThemeProvider>(context);
+    final themeProvider = Provider.of<ThemeProvider>(context, listen: false);
     final prefs = await SharedPreferences.getInstance();
     final isLightMode = prefs.getBool('_isLightMode') ?? true;
     themeProvider.setThemeMode(isLightMode);
-    print(isLightMode);
   }
 
   @override
@@ -57,10 +60,6 @@ class _MainAppState extends State<MainApp> {
       themeMode: Provider.of<ThemeProvider>(context).themeMode
           ? ThemeMode.light
           : ThemeMode.dark,
-
-      // themeMode: Provider.of<ThemeProvider>(context).isLightMode
-      //     ? ThemeMode.light
-      //     : ThemeMode.dark,
       initialRoute: Home.id,
       routes: {
         Home.id: (context) => const HomeScreen(),
