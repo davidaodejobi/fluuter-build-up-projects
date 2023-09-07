@@ -15,7 +15,7 @@ class BoldHeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       boldHeaderText,
-      style: themeData.isLightMode
+      style: themeData.themeMode
           ? Theme.of(context)
               .textTheme
               .headlineMedium

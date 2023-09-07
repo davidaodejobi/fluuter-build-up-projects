@@ -34,7 +34,7 @@ class DetailsScreen extends StatelessWidget {
                   children: [
                     Text(
                       "Details",
-                      style: themeData.isLightMode
+                      style: themeData.themeMode
                           ? Theme.of(context)
                               .textTheme
                               .headlineMedium
@@ -47,7 +47,7 @@ class DetailsScreen extends StatelessWidget {
                       },
                       child: Text(
                         "Forecsast",
-                        style: themeData.isLightMode
+                        style: themeData.themeMode
                             ? Theme.of(context)
                                 .textTheme
                                 .headlineMedium

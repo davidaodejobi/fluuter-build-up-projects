@@ -1,7 +1,6 @@
 class Location {
   final String city;
-  final String temperature;
-  final String weatherCondition;
+  final int temperature;
 
-  Location(this.city, this.temperature, this.weatherCondition);
+  Location(this.city, this.temperature);
 }

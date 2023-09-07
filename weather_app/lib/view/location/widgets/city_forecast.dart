@@ -14,7 +14,7 @@ class CityForecast extends StatelessWidget {
   }) : super(key: key);
 
   final String city;
-  final String temperature;
+  final int temperature;
   final String weatherCondition;
   final String url;
 
@@ -32,7 +32,7 @@ class CityForecast extends StatelessWidget {
               children: [
                 Text(
                   city,
-                  style: themeData.isLightMode
+                  style: themeData.themeMode
                       ? Theme.of(context)
                           .textTheme
                           .headlineMedium
@@ -42,9 +42,19 @@ class CityForecast extends StatelessWidget {
                 const SizedBox(
                   height: 5.0,
                 ),
-                Text(
-                  temperature,
-                  style: Theme.of(context).textTheme.titleLarge,
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: temperature.toString(),
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      TextSpan(
+                        text: '°C',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 5.0,
@@ -59,7 +69,7 @@ class CityForecast extends StatelessWidget {
               url,
               width: 40,
               height: 40,
-              colorFilter: themeData.isLightMode
+              colorFilter: themeData.themeMode
                   ? const ColorFilter.mode(Colors.black, BlendMode.srcIn)
                   : const ColorFilter.mode(Colors.white, BlendMode.srcIn),
             ),

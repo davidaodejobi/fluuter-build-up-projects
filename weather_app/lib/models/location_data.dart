@@ -5,8 +5,9 @@ import 'package:weather_app/models/location.dart';
 
 class LocationData extends ChangeNotifier {
   final List<Location> _locationList = [
-    Location("Mumbai", "16°C", "Light Drizzle"),
-    Location("Goa", "26°C", "Sunny"),
+    Location("Ilorin", -16),
+    Location("Lagos", -26),
+    Location("Abuja", 30),
   ];
 
   UnmodifiableListView<Location> get locationList {
@@ -17,43 +18,32 @@ class LocationData extends ChangeNotifier {
     return locationList.length;
   }
 
-  void addNewLocation(
-      String city, String temperature, String weatherCondition) {
+  void addNewLocation(String city, int temperature, String weatherCondition) {
     _locationList.add(
-      Location(city, temperature, weatherCondition),
+      Location(city, temperature),
     );
     notifyListeners();
   }
 
-  String getWeatherIcon(int condition) {
-    if (condition < 300) {
-      return '🌩';
-    } else if (condition < 400) {
-      return '🌧';
-    } else if (condition < 600) {
-      return '☔️';
-    } else if (condition < 700) {
-      return '☃️';
-    } else if (condition < 800) {
-      return '🌫';
-    } else if (condition == 800) {
-      return '☀️';
-    } else if (condition <= 804) {
-      return '☁️';
+  String getWeatherIconUrl(int temperature) {
+    if (temperature > 30) {
+      return 'assets/svgs/sun.svg';
+    } else if (temperature >= 20) {
+      return 'assets/svgs/cloud-sun.svg';
+    } else if (temperature >= 15) {
+      return 'assets/svgs/cloud.svg';
+    } else if (temperature >= 10) {
+      return 'assets/svgs/weather-overcast.svg';
+    } else if (temperature > 0) {
+      return 'assets/svgs/drizzle.svg';
+    } else if (temperature <= 0.0 && temperature > -10.0) {
+      return "assets/svgs/cloud-snow.svg";
+    } else if (temperature <= -10.0 && temperature > -20.0) {
+      return "assets/svgs/cloud-fog.svg";
+    } else if (temperature <= -20.0) {
+      return "assets/svgs/cloud-bolt.svg";
     } else {
-      return '🤷‍';
-    }
-  }
-
-  String getMessage(int temp) {
-    if (temp > 25) {
-      return 'It\'s 🍦 time';
-    } else if (temp > 20) {
-      return 'Time for shorts and 👕';
-    } else if (temp < 10) {
-      return 'You\'ll need 🧣 and 🧤';
-    } else {
-      return 'Bring a 🧥 just in case';
+      return "assets/svgs/windy-cloud.svg";
     }
   }
 

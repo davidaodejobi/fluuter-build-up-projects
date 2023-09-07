@@ -33,7 +33,7 @@ class ForecastScreen extends StatelessWidget {
                 ),
                 Text(
                   "Forecast",
-                  style: themeData.isLightMode
+                  style: themeData.themeMode
                       ? Theme.of(context)
                           .textTheme
                           .headlineMedium

@@ -23,7 +23,7 @@ class TemperatureRow extends StatelessWidget {
           url,
           width: 11,
           height: 11,
-          colorFilter: themeData.isLightMode
+          colorFilter: themeData.themeMode
               ? const ColorFilter.mode(Colors.black, BlendMode.srcIn)
               : const ColorFilter.mode(Colors.white, BlendMode.srcIn),
         ),

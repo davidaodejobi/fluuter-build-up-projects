@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/location/locations.dart';
 import 'package:weather_app/view/settings/settings.dart';
 
@@ -11,8 +9,6 @@ class LocationAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final themeData = Provider.of<ThemeProvider>(context);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

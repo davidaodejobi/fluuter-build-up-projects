@@ -28,7 +28,7 @@ class Details extends StatelessWidget {
         ),
         Text(
           value,
-          style: themeData.isLightMode
+          style: themeData.themeMode
               ? Theme.of(context)
                   .textTheme
                   .titleLarge

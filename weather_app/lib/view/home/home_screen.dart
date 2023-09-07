@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: '22',
-                        style: themeData.isLightMode
+                        style: themeData.themeMode
                             ? Theme.of(context)
                                 .textTheme
                                 .displayLarge
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       TextSpan(
                         text: '°C',
-                        style: themeData.isLightMode
+                        style: themeData.themeMode
                             ? Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       "assets/images/drizzle_white.svg",
-                      colorFilter: themeData.isLightMode
+                      colorFilter: themeData.themeMode
                           ? const ColorFilter.mode(
                               Colors.black, BlendMode.srcIn)
                           : const ColorFilter.mode(
@@ -119,7 +119,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         SvgPicture.asset(
                           "assets/svgs/sunrise.svg",
-                          colorFilter: themeData.isLightMode
+                          colorFilter: themeData.themeMode
                               ? const ColorFilter.mode(
                                   Colors.black, BlendMode.srcIn)
                               : const ColorFilter.mode(
@@ -141,7 +141,7 @@ class HomeScreen extends StatelessWidget {
                       children: [
                         SvgPicture.asset(
                           "assets/svgs/sunrise.svg",
-                          colorFilter: themeData.isLightMode
+                          colorFilter: themeData.themeMode
                               ? const ColorFilter.mode(
                                   Colors.black, BlendMode.srcIn)
                               : const ColorFilter.mode(

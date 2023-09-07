@@ -59,8 +59,10 @@ class LocationsScreen extends StatelessWidget {
                                 child: CityForecast(
                                   city: location.city,
                                   temperature: location.temperature,
-                                  weatherCondition: location.weatherCondition,
-                                  url: "assets/svgs/drizzle.svg",
+                                  weatherCondition: LocationData()
+                                      .getWeatherType(location.temperature),
+                                  url: LocationData()
+                                      .getWeatherIconUrl(location.temperature),
                                 ),
                               );
                             })),

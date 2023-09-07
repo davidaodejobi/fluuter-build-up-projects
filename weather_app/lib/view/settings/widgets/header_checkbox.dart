@@ -29,7 +29,7 @@ class HeaderCheckBox extends StatelessWidget {
           children: [
             Text(
               headerText,
-              style: themeData.isLightMode
+              style: themeData.themeMode
                   ? Theme.of(context).textTheme.titleLarge
                   : Theme.of(context).textTheme.titleLarge?.copyWith(
                         color: Colors.white70,
@@ -40,7 +40,7 @@ class HeaderCheckBox extends StatelessWidget {
             ),
             Text(
               headerSubText,
-              style: themeData.isLightMode
+              style: themeData.themeMode
                   ? Theme.of(context).textTheme.bodySmall
                   : Theme.of(context).textTheme.bodySmall?.copyWith(
                         color: Colors.white70,
@@ -53,7 +53,7 @@ class HeaderCheckBox extends StatelessWidget {
                 ? const Icon(Icons.check)
                 : Icon(
                     Icons.check,
-                    color: Provider.of<ThemeProvider>(context).isLightMode
+                    color: Provider.of<ThemeProvider>(context).themeMode
                         ? Colors.white30
                         : Colors.black,
                   )
