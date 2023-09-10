@@ -15,13 +15,33 @@ class AddLocation extends StatelessWidget {
         return Container(
           color: const Color(0xFF757575),
           child: Container(
-            padding: const EdgeInsets.only(top: 20.0, left: 20.0, right: 20.0),
+            padding: const EdgeInsets.only(
+              top: 5.0,
+              left: 20.0,
+              right: 20.0,
+              bottom: 10,
+            ),
             decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(8.0),
+                topRight: Radius.circular(8.0),
+              ),
               color: Colors.white,
             ),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                Container(
+                  alignment: Alignment.center,
+                  height: 4,
+                  width: 40,
+                  decoration: const BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(2),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
                 Text(
                   "New City",
                   textAlign: TextAlign.center,
@@ -30,10 +50,13 @@ class AddLocation extends StatelessWidget {
                       .headlineMedium
                       ?.copyWith(color: Colors.black),
                 ),
+                //TODO: 4 Add validation check for this field so that it can't be empty
+                //TODO: 5 CHange the blue line showing under the text field to black (and white)
                 TextFormField(
                   onChanged: (value) {
                     newCity = value;
                   },
+                  cursorColor: AppColors.kBackgroundColor,
                   autofocus: true,
                   style: Theme.of(context)
                       .textTheme
@@ -50,9 +73,16 @@ class AddLocation extends StatelessWidget {
 
                     Navigator.pop(context);
                   },
-                  style: const ButtonStyle(
-                    backgroundColor:
-                        MaterialStatePropertyAll(AppColors.kBackgroundColor),
+                  style: ButtonStyle(
+                    fixedSize: MaterialStatePropertyAll<Size>(
+                      Size(
+                        MediaQuery.of(context).size.height * 1,
+                        50,
+                      ),
+                    ),
+                    backgroundColor: const MaterialStatePropertyAll(
+                      AppColors.kBackgroundColor,
+                    ),
                   ),
                   child: Text(
                     "Add",

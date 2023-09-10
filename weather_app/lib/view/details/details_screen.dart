@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/details/widgets/detail.dart';
 import 'package:weather_app/view/forecast/forecast_screen.dart';
+import 'package:weather_app/view/shared/app_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
   static const String id = "details_screen";
@@ -28,6 +28,8 @@ class DetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                //TODO:2 I am not currently looking at the user, but this screen should have a back button.
+                /// more reason why you need to have a solid appbar you can reuse across the app
                 const LocationAppBar(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

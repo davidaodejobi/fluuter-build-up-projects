@@ -7,24 +7,14 @@ import 'package:weather_app/view/location/widgets/add_location.dart';
 import 'package:weather_app/view/location/widgets/city_forecast.dart';
 import 'package:weather_app/view/location/widgets/search_location_app_bar.dart';
 
-class LocationsScreen extends StatefulWidget {
+class LocationsScreen extends StatelessWidget {
   static const String id = "locations_screen";
 
   const LocationsScreen({super.key});
 
   @override
-  State<LocationsScreen> createState() => _LocationsScreenState();
-}
-
-class _LocationsScreenState extends State<LocationsScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<LocationData>(context, listen: false).displayCities();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Provider.of<LocationData>(context, listen: false).displayCities();
     return Scaffold(
       body: Consumer<LocationData>(
         builder: (context, cityData, child) {
@@ -41,6 +31,8 @@ class _LocationsScreenState extends State<LocationsScreen> {
                   children: [
                     SearchLocationAppBar(
                       addLocation: () {
+                        /// The implementation for this bottom sheet looks a
+                        /// little bit confusing, but it get the job done
                         showModalBottomSheet(
                           context: context,
                           isScrollControlled: true,
@@ -92,6 +84,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                     Navigator.pushNamed(
                                         context, DetailsScreen.id);
                                   },
+                                  //TODO: 3 Add a slide to delete here just like the one for the note app
                                   child: CityForecast(
                                     city: location.city,
                                     temperature: location.temperature,
