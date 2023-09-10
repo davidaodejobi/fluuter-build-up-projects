@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
+import 'package:weather_app/view/shared/app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -16,9 +16,9 @@ class HomeScreen extends StatelessWidget {
         child: SizedBox.expand(
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 30.0,
-              left: 15.0,
-              right: 15.0,
+              top: 0.0,
+              left: 16.0,
+              right: 16.0,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -37,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       TextSpan(
                         text: '22',
-                        style: themeData.isLightMode
+                        style: themeData.themeMode
                             ? Theme.of(context)
                                 .textTheme
                                 .displayLarge
@@ -46,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                       ),
                       TextSpan(
                         text: '°C',
-                        style: themeData.isLightMode
+                        style: themeData.themeMode
                             ? Theme.of(context)
                                 .textTheme
                                 .displaySmall
@@ -61,7 +61,11 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/down_arrow.svg"),
+                        // SvgPicture.asset("assets/svgs/down_arrow.svg"),
+                        const Icon(
+                          Icons.south,
+                          size: 20,
+                        ),
                         Text(
                           "16°C",
                           style: Theme.of(context).textTheme.titleLarge,
@@ -73,7 +77,11 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/up_arrow.svg"),
+                        // SvgPicture.asset("assets/svgs/up_arrow.svg"),
+                        const Icon(
+                          Icons.north,
+                          size: 20,
+                        ),
                         Text(
                           "26°C",
                           style: Theme.of(context).textTheme.titleLarge,
@@ -86,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     SvgPicture.asset(
                       "assets/images/drizzle_white.svg",
-                      colorFilter: themeData.isLightMode
+                      colorFilter: themeData.themeMode
                           ? const ColorFilter.mode(
                               Colors.black, BlendMode.srcIn)
                           : const ColorFilter.mode(
@@ -109,7 +117,14 @@ class HomeScreen extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/sunrise.svg"),
+                        SvgPicture.asset(
+                          "assets/svgs/sunrise.svg",
+                          colorFilter: themeData.themeMode
+                              ? const ColorFilter.mode(
+                                  Colors.black, BlendMode.srcIn)
+                              : const ColorFilter.mode(
+                                  Colors.white, BlendMode.srcIn),
+                        ),
                         const SizedBox(
                           width: 10.0,
                         ),
@@ -124,7 +139,14 @@ class HomeScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        SvgPicture.asset("assets/svgs/sunrise.svg"),
+                        SvgPicture.asset(
+                          "assets/svgs/sunrise.svg",
+                          colorFilter: themeData.themeMode
+                              ? const ColorFilter.mode(
+                                  Colors.black, BlendMode.srcIn)
+                              : const ColorFilter.mode(
+                                  Colors.white, BlendMode.srcIn),
+                        ),
                         const SizedBox(
                           width: 10.0,
                         ),
@@ -136,12 +158,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                // TextButton(
-                //   onPressed: () {
-                //     Navigator.pushNamed(context, DetailsScreen.id);
-                //   },
-                //   child: const Text("Details"),
-                // ),
                 const SizedBox(
                   height: 30.0,
                 ),

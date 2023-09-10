@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/constants/temperature.dart';
 import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/forecast/widgets/forecast.dart';
+import 'package:weather_app/view/shared/temperature_row.dart';
 
 class DailyWidget extends ForecastWidget {
   const DailyWidget(
@@ -35,7 +35,7 @@ class DailyWidget extends ForecastWidget {
                   children: [
                     Text(
                       time,
-                      style: themeData.isLightMode
+                      style: themeData.themeMode
                           ? Theme.of(context)
                               .textTheme
                               .bodySmall
@@ -47,18 +47,36 @@ class DailyWidget extends ForecastWidget {
                     ),
                     SvgPicture.asset(
                       svgUrl,
-                      colorFilter: themeData.isLightMode
+                      colorFilter: themeData.themeMode
                           ? const ColorFilter.mode(
                               Colors.black, BlendMode.srcIn)
                           : const ColorFilter.mode(
                               Colors.white, BlendMode.srcIn),
                     ),
-                    Temperature(
-                      firstUrl: firstUrl,
-                      firstTemperature: firstTemperature,
-                      secondUrl: secondUrl,
-                      secondTemperature: secondTemperature,
+                    Column(
+                      children: [
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        TemperatureRow(
+                          url: firstUrl,
+                          temperature: firstTemperature,
+                        ),
+                        const SizedBox(
+                          height: 10.0,
+                        ),
+                        TemperatureRow(
+                          url: secondUrl,
+                          temperature: secondTemperature,
+                        ),
+                      ],
                     ),
+                    // Temperature(
+                    //   firstUrl: firstUrl,
+                    //   firstTemperature: firstTemperature,
+                    //   secondUrl: secondUrl,
+                    //   secondTemperature: secondTemperature,
+                    // ),
                   ],
                 ),
                 const SizedBox(

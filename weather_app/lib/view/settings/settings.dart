@@ -21,7 +21,7 @@ class SettingsScreen extends StatelessWidget {
         child: SizedBox.expand(
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 30.0,
+              top: 10.0,
               left: 25.0,
               right: 25.0,
             ),

@@ -29,7 +29,7 @@ class AppTheme {
       titleLarge: TextStyle(
         fontSize: 18.0,
         fontWeight: FontWeight.w400,
-        color: AppColors.lightTextColor,
+        // color: AppColors.kLightTextColor,
       ),
       bodyLarge: TextStyle(
         fontSize: 16.0,
@@ -46,12 +46,12 @@ class AppTheme {
       bodySmall: TextStyle(
         fontSize: 12.0,
         fontWeight: FontWeight.w400,
-        color: AppColors.lightTextColor,
+        // color: AppColors.kLightTextColor,
       ),
       labelSmall: TextStyle(
         fontSize: 10.0,
         fontWeight: FontWeight.w400,
-        color: AppColors.lightTextColor,
+        // color: AppColors.kLightTextColor,
       ),
     ).apply(
       fontFamily: _fontName,
@@ -61,20 +61,30 @@ class AppTheme {
   static lightMode() {
     return ThemeData(
       fontFamily: _fontName,
-      textTheme: _buildTextTheme(),
+      textTheme: _buildTextTheme().apply(
+        bodyColor: Colors.black,
+        displayColor: AppColors.kLightTextColor,
+      ),
     );
   }
 
   static darkMode() {
     return ThemeData(
-      scaffoldBackgroundColor: AppColors.backgroundColor,
+      scaffoldBackgroundColor: AppColors.kBackgroundColor,
       brightness: Brightness.dark,
       appBarTheme: const AppBarTheme(
-        elevation: 0,
-        backgroundColor: Colors.black,
-      ),
+          elevation: 0,
+          backgroundColor: Colors.black,
+          iconTheme: IconThemeData(color: Colors.red)),
       fontFamily: _fontName,
-      textTheme: _buildTextTheme(),
+
+      textTheme: _buildTextTheme().apply(
+        displayColor: Colors.white,
+
+        // decorationColor: AppColors.kLightTextColor,
+      ),
+      // iconTheme: const IconThemeData(color: Colors.red),
+      // textTheme: Theme.of(context).textTheme.apply(bodyColor: Colors.black),
     );
   }
 }

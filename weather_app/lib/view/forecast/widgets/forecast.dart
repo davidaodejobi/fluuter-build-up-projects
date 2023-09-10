@@ -30,7 +30,7 @@ class ForecastWidget extends StatelessWidget {
                   children: [
                     Text(
                       time,
-                      style: themeData.isLightMode
+                      style: themeData.themeMode
                           ? Theme.of(context)
                               .textTheme
                               .bodySmall
@@ -42,7 +42,7 @@ class ForecastWidget extends StatelessWidget {
                     ),
                     SvgPicture.asset(
                       svgUrl,
-                      colorFilter: themeData.isLightMode
+                      colorFilter: themeData.themeMode
                           ? const ColorFilter.mode(
                               Colors.black, BlendMode.srcIn)
                           : const ColorFilter.mode(

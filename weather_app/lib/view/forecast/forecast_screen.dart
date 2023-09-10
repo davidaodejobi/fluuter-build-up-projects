@@ -1,10 +1,10 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/forecast/widgets/daily_forecast.dart';
 import 'package:weather_app/view/forecast/widgets/hourly_forecast.dart';
+import 'package:weather_app/view/shared/app_bar.dart';
 
 class ForecastScreen extends StatelessWidget {
   static const String id = "forecast_screen";
@@ -19,7 +19,7 @@ class ForecastScreen extends StatelessWidget {
         child: SizedBox.expand(
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 30.0,
+              top: 10.0,
               left: 25.0,
               right: 25.0,
             ),
@@ -33,7 +33,7 @@ class ForecastScreen extends StatelessWidget {
                 ),
                 Text(
                   "Forecast",
-                  style: themeData.isLightMode
+                  style: themeData.themeMode
                       ? Theme.of(context)
                           .textTheme
                           .headlineMedium
