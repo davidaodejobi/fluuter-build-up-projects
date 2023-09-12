@@ -1,4 +1,4 @@
-#Wed Sep 06 20:00:04 WAT 2023
-base.0=/home/faves/VscodeProjects/learning projects/weather_app/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
+#Tue Sep 12 13:20:09 BST 2023
+base.0=C\:\\Users\\Temilola\\Desktop\\Current\\fluuter-build-up-projects\\weather_app\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
+path.0=classes.dex

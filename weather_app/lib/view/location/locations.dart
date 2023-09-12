@@ -16,6 +16,24 @@ class LocationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Provider.of<LocationData>(context, listen: false).displayCities();
     return Scaffold(
+      appBar: SearchLocationAppBar(
+        addLocation: () {
+          /// The implementation for this bottom sheet looks a
+          /// little bit confusing, but it get the job done
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: const AddLocation(),
+              ),
+            ),
+          );
+        },
+      ),
       body: Consumer<LocationData>(
         builder: (context, cityData, child) {
           return SafeArea(
@@ -29,25 +47,6 @@ class LocationsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SearchLocationAppBar(
-                      addLocation: () {
-                        /// The implementation for this bottom sheet looks a
-                        /// little bit confusing, but it get the job done
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (context) => SingleChildScrollView(
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom,
-                              ),
-                              child: const AddLocation(),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
                     const SizedBox(
                       height: 30.0,
                     ),

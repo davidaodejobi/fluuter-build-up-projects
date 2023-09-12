@@ -16,6 +16,8 @@ class DetailsScreen extends StatelessWidget {
     final themeData = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
+      appBar: const LocationAppBar(
+          city: 'Ilorin', location: "Current Location", isArrowVisible: true),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
@@ -30,7 +32,7 @@ class DetailsScreen extends StatelessWidget {
               children: [
                 //TODO:2 I am not currently looking at the user, but this screen should have a back button.
                 /// more reason why you need to have a solid appbar you can reuse across the app
-                const LocationAppBar(),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

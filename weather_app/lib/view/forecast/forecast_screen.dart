@@ -15,6 +15,8 @@ class ForecastScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Provider.of<ThemeProvider>(context);
     return Scaffold(
+      appBar: const LocationAppBar(
+          city: 'Ilorin', location: "Current Location", isArrowVisible: true),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
@@ -27,7 +29,6 @@ class ForecastScreen extends StatelessWidget {
               // mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const LocationAppBar(),
                 const SizedBox(
                   height: 60.0,
                 ),

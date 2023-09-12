@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:weather_app/models/location_data.dart';
 import 'package:weather_app/utils/app_theme.dart';
 import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/details/details_screen.dart';
@@ -16,11 +17,14 @@ void main() {
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   FlutterNativeSplash.remove();
 
-  runApp(ChangeNotifierProvider(
-      create: (context) {
-        return ThemeProvider();
-      },
-      child: const MainApp()));
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(
+      create: (context) => ThemeProvider(),
+    ),
+    ChangeNotifierProvider(
+      create: (context) => LocationData(),
+    ),
+  ], child: const MainApp()));
 }
 
 class MainApp extends StatefulWidget {

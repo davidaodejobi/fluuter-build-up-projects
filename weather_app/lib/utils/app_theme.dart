@@ -60,6 +60,11 @@ class AppTheme {
 
   static lightMode() {
     return ThemeData(
+      appBarTheme: const AppBarTheme(
+        elevation: 0,
+        backgroundColor: Colors.white10,
+        iconTheme: IconThemeData(color: Colors.black),
+      ),
       fontFamily: _fontName,
       textTheme: _buildTextTheme().apply(
         bodyColor: Colors.black,
@@ -73,18 +78,16 @@ class AppTheme {
       scaffoldBackgroundColor: AppColors.kBackgroundColor,
       brightness: Brightness.dark,
       appBarTheme: const AppBarTheme(
-          elevation: 0,
-          backgroundColor: Colors.black,
-          iconTheme: IconThemeData(color: Colors.red)),
+        elevation: 0,
+        backgroundColor: Colors.black,
+        iconTheme: IconThemeData(color: Colors.white),
+      ),
       fontFamily: _fontName,
-
       textTheme: _buildTextTheme().apply(
         displayColor: Colors.white,
 
         // decorationColor: AppColors.kLightTextColor,
       ),
-      // iconTheme: const IconThemeData(color: Colors.red),
-      // textTheme: Theme.of(context).textTheme.apply(bodyColor: Colors.black),
     );
   }
 }

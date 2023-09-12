@@ -12,6 +12,11 @@ class HomeScreen extends StatelessWidget {
     final themeData = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
+      appBar: const LocationAppBar(
+        city: "Ilorin",
+        location: "Current Location",
+        isArrowVisible: false,
+      ),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
@@ -23,7 +28,6 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const LocationAppBar(),
                 Text(
                   "in sync",
                   style: Theme.of(context).textTheme.labelSmall,

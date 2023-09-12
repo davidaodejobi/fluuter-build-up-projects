@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:weather_app/view/location/locations.dart';
 import 'package:weather_app/view/settings/settings.dart';
@@ -11,53 +12,63 @@ import 'package:weather_app/view/settings/settings.dart';
 /// approach you have but make it reusable across board
 ///
 /// Try to make both the text and back button clickable
-class LocationAppBar extends StatelessWidget {
-  const LocationAppBar({
-    super.key,
-  });
+class LocationAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const LocationAppBar(
+      {Key? key,
+      required this.city,
+      required this.location,
+      required this.isArrowVisible})
+      : preferredSize = const Size.fromHeight(kToolbarHeight),
+        super(key: key);
 
   @override
+  final Size preferredSize;
+  final String city;
+  final String location;
+  final bool isArrowVisible;
+  @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Text('Mumbai',
-            //     style: themeData.isLightMode
-            //         ? Theme.of(context)
-            //             .textTheme
-            //             .titleLarge
-            //             ?.copyWith(color: Colors.black)
-            //         : Theme.of(context).textTheme.titleLarge),
-            Text('Mumbai', style: Theme.of(context).textTheme.titleLarge),
-            Text(
-              'Current Location',
-              style: Theme.of(context).textTheme.labelSmall,
+    return AppBar(
+      elevation: 0,
+      leading: isArrowVisible
+          ? GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back_ios,
+                size: 20.0,
+              ),
             )
-          ],
+          : null,
+      title: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(city, style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            location,
+            style: Theme.of(context).textTheme.labelSmall,
+          )
+        ],
+      ),
+      actions: [
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(LocationsScreen.id);
+          },
+          child: const Icon(Icons.map_outlined),
         ),
-        Row(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed(LocationsScreen.id);
-              },
-              // child: SvgPicture.asset("assets/svgs/location.svg"),
-              child: const Icon(Icons.map_outlined),
-            ),
-            const SizedBox(
-              width: 15.0,
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pushNamed(SettingsScreen.id);
-              },
-              // child: SvgPicture.asset("assets/svgs/settings.svg"),
-              child: const Icon(Icons.settings),
-            ),
-          ],
+        const SizedBox(
+          width: 15.0,
+        ),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).pushNamed(SettingsScreen.id);
+          },
+          child: const Icon(Icons.settings),
+        ),
+        const SizedBox(
+          width: 20.0,
         ),
       ],
     );
