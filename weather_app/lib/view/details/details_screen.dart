@@ -9,15 +9,20 @@ import 'package:weather_app/view/shared/app_bar.dart';
 class DetailsScreen extends StatelessWidget {
   static const String id = "details_screen";
 
-  const DetailsScreen({super.key});
+  final String cityName;
+
+  const DetailsScreen({
+    Key? key,
+    required this.cityName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
-      appBar: const LocationAppBar(
-          city: 'Ilorin', location: "Current Location", isArrowVisible: true),
+      appBar: LocationAppBar(
+          city: cityName, location: "Current Location", isArrowVisible: true),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(

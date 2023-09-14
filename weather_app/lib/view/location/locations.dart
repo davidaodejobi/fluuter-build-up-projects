@@ -82,8 +82,15 @@ class LocationsScreen extends StatelessWidget {
                                 final location = cityData.cityList[index];
                                 return InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(
-                                        context, DetailsScreen.id);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailsScreen(
+                                            cityName: location.city),
+                                      ),
+                                    );
+                                    // Navigator.pushNamed(
+                                    //     context, DetailsScreen.id);
                                   },
                                   //TODO: 3 Add a slide to delete here just like the one for the note app
                                   child: Dismissible(

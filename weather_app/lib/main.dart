@@ -12,6 +12,8 @@ import 'package:weather_app/view/home/home_screen.dart';
 import 'package:weather_app/view/location/locations.dart';
 import 'package:weather_app/view/settings/settings.dart';
 
+String cityName = '';
+
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
@@ -64,7 +66,7 @@ class _MainAppState extends State<MainApp> {
       initialRoute: Home.id,
       routes: {
         Home.id: (context) => const HomeScreen(),
-        DetailsScreen.id: (context) => const DetailsScreen(),
+        DetailsScreen.id: (context) => DetailsScreen(cityName: cityName),
         ForecastScreen.id: (context) => const ForecastScreen(),
         LocationsScreen.id: (context) => const LocationsScreen(),
         SettingsScreen.id: (context) => const SettingsScreen(),
