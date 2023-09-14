@@ -59,9 +59,6 @@ class AddLocation extends StatelessWidget {
                     children: [
                       TextFormField(
                         controller: _controller,
-                        // onChanged: (value) {
-                        //   newCity = value;
-                        // },
                         validator: (value) {
                           if (value == null || value == "") {
                             return "Enter a valid city name";
@@ -89,6 +86,7 @@ class AddLocation extends StatelessWidget {
                           if (_formKey.currentState!.validate()) {
                             locationData.addNewCity(
                                 _controller.text, -10, "Light Drizzle");
+                            _controller.clear();
                             Navigator.pop(context);
                           }
                         },

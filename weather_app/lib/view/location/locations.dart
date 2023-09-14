@@ -4,7 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/models/location_data.dart';
 import 'package:weather_app/view/details/details_screen.dart';
 import 'package:weather_app/view/location/widgets/add_location.dart';
+import 'package:weather_app/view/location/widgets/alert.dart';
 import 'package:weather_app/view/location/widgets/city_forecast.dart';
+import 'package:weather_app/view/location/widgets/delete_location.dart';
 import 'package:weather_app/view/location/widgets/search_location_app_bar.dart';
 
 class LocationsScreen extends StatelessWidget {
@@ -84,13 +86,33 @@ class LocationsScreen extends StatelessWidget {
                                         context, DetailsScreen.id);
                                   },
                                   //TODO: 3 Add a slide to delete here just like the one for the note app
-                                  child: CityForecast(
-                                    city: location.city,
-                                    temperature: location.temperature,
-                                    weatherCondition: LocationData()
-                                        .getWeatherType(location.temperature),
-                                    url: LocationData().getWeatherIconUrl(
-                                        location.temperature),
+                                  child: Dismissible(
+                                    key: Key(location.city),
+                                    background: deleteSlide(),
+                                    secondaryBackground: deleteSlide(),
+                                    onDismissed: (direction) {},
+                                    confirmDismiss:
+                                        (DismissDirection direction) async {
+                                      return await showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Alert(
+                                              deleteCityByID: (int id) {
+                                                cityData.deleteCity(id);
+                                                Navigator.pop(context);
+                                              },
+                                              cityID: location.id,
+                                            );
+                                          });
+                                    },
+                                    child: CityForecast(
+                                      city: location.city,
+                                      temperature: location.temperature,
+                                      weatherCondition: LocationData()
+                                          .getWeatherType(location.temperature),
+                                      url: LocationData().getWeatherIconUrl(
+                                          location.temperature),
+                                    ),
                                   ),
                                 );
                               }),
