@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/constants/temperature_row.dart';
 import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/forecast/widgets/forecast.dart';
+import 'package:weather_app/view/shared/temperature_row.dart';
 
 class DailyWidget extends ForecastWidget {
   const DailyWidget(

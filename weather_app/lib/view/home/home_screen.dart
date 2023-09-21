@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
+import 'package:weather_app/view/shared/app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,18 +12,22 @@ class HomeScreen extends StatelessWidget {
     final themeData = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
+      appBar: const LocationAppBar(
+        city: "Ilorin",
+        location: "Current Location",
+        isArrowVisible: false,
+      ),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
             padding: const EdgeInsets.only(
-              top: 10.0,
-              left: 15.0,
-              right: 15.0,
+              top: 0.0,
+              left: 16.0,
+              right: 16.0,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const LocationAppBar(),
                 Text(
                   "in sync",
                   style: Theme.of(context).textTheme.labelSmall,

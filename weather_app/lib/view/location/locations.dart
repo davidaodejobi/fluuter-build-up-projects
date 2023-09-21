@@ -4,28 +4,38 @@ import 'package:provider/provider.dart';
 import 'package:weather_app/models/location_data.dart';
 import 'package:weather_app/view/details/details_screen.dart';
 import 'package:weather_app/view/location/widgets/add_location.dart';
+import 'package:weather_app/view/location/widgets/alert.dart';
 import 'package:weather_app/view/location/widgets/city_forecast.dart';
+import 'package:weather_app/view/location/widgets/delete_location.dart';
 import 'package:weather_app/view/location/widgets/search_location_app_bar.dart';
 
-class LocationsScreen extends StatefulWidget {
+class LocationsScreen extends StatelessWidget {
   static const String id = "locations_screen";
 
   const LocationsScreen({super.key});
 
   @override
-  State<LocationsScreen> createState() => _LocationsScreenState();
-}
-
-class _LocationsScreenState extends State<LocationsScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Provider.of<LocationData>(context, listen: false).displayCities();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    Provider.of<LocationData>(context, listen: false).displayCities();
     return Scaffold(
+      appBar: SearchLocationAppBar(
+        addLocation: () {
+          /// The implementation for this bottom sheet looks a
+          /// little bit confusing, but it get the job done
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                  bottom: MediaQuery.of(context).viewInsets.bottom,
+                ),
+                child: const AddLocation(),
+              ),
+            ),
+          );
+        },
+      ),
       body: Consumer<LocationData>(
         builder: (context, cityData, child) {
           return SafeArea(
@@ -39,23 +49,6 @@ class _LocationsScreenState extends State<LocationsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SearchLocationAppBar(
-                      addLocation: () {
-                        showModalBottomSheet(
-                          context: context,
-                          isScrollControlled: true,
-                          builder: (context) => SingleChildScrollView(
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                bottom:
-                                    MediaQuery.of(context).viewInsets.bottom,
-                              ),
-                              child: const AddLocation(),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
                     const SizedBox(
                       height: 30.0,
                     ),
@@ -89,16 +82,44 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                 final location = cityData.cityList[index];
                                 return InkWell(
                                   onTap: () {
-                                    Navigator.pushNamed(
-                                        context, DetailsScreen.id);
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => DetailsScreen(
+                                            cityName: location.city),
+                                      ),
+                                    );
+                                    // Navigator.pushNamed(
+                                    //     context, DetailsScreen.id);
                                   },
-                                  child: CityForecast(
-                                    city: location.city,
-                                    temperature: location.temperature,
-                                    weatherCondition: LocationData()
-                                        .getWeatherType(location.temperature),
-                                    url: LocationData().getWeatherIconUrl(
-                                        location.temperature),
+                                  //TODO: 3 Add a slide to delete here just like the one for the note app
+                                  child: Dismissible(
+                                    key: Key(location.city),
+                                    background: deleteSlide(),
+                                    secondaryBackground: deleteSlide(),
+                                    onDismissed: (direction) {},
+                                    confirmDismiss:
+                                        (DismissDirection direction) async {
+                                      return await showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return Alert(
+                                              deleteCityByID: (int id) {
+                                                cityData.deleteCity(id);
+                                                Navigator.pop(context);
+                                              },
+                                              cityID: location.id,
+                                            );
+                                          });
+                                    },
+                                    child: CityForecast(
+                                      city: location.city,
+                                      temperature: location.temperature,
+                                      weatherCondition: LocationData()
+                                          .getWeatherType(location.temperature),
+                                      url: LocationData().getWeatherIconUrl(
+                                          location.temperature),
+                                    ),
                                   ),
                                 );
                               }),

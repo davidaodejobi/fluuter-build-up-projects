@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/models/location.dart';
 
+int id = 0;
+
 class LocationData extends ChangeNotifier {
   List<Location> _cityList = [];
 
@@ -11,13 +13,31 @@ class LocationData extends ChangeNotifier {
     return UnmodifiableListView(_cityList);
   }
 
+  // int generateNoteID() {
+  //   var random = math.Random();
+  //   return random.nextInt(999999);
+  // }
+
+  int generateNoteID() {
+    id++;
+    return id;
+  }
+
   Future<void> addNewCity(
     String city,
     int temperature,
     String weatherCondition,
   ) async {
-    final newCity = Location(city, temperature);
+    final newCity = Location(city, temperature, generateNoteID());
     _cityList.add(newCity);
+    await saveCity();
+    notifyListeners();
+  }
+
+  deleteCity(int id) async {
+    final locationIndex = _cityList.indexWhere((location) => location.id == id);
+    print("Location Index: $locationIndex");
+    _cityList.removeAt(locationIndex);
     await saveCity();
     notifyListeners();
   }
@@ -39,22 +59,9 @@ class LocationData extends ChangeNotifier {
     notifyListeners();
   }
 
-  // final List<Location> _cityList = [
-  //   Location("Ilorin", -16),
-  //   Location("Lagos", -26),
-  //   Location("Abuja", 30),
-  // ];
-
   int get locationListLength {
     return cityList.length;
   }
-
-  // void addNewLocation(String city, int temperature, String weatherCondition) {
-  //   _locationList.add(
-  //     Location(city, temperature),
-  //   );
-  //   notifyListeners();
-  // }
 
   String getWeatherIconUrl(int temperature) {
     if (temperature > 30) {

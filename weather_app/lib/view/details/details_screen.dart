@@ -1,21 +1,28 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/constants/app_bar.dart';
 import 'package:weather_app/utils/theme_provider.dart';
 import 'package:weather_app/view/details/widgets/detail.dart';
 import 'package:weather_app/view/forecast/forecast_screen.dart';
+import 'package:weather_app/view/shared/app_bar.dart';
 
 class DetailsScreen extends StatelessWidget {
   static const String id = "details_screen";
 
-  const DetailsScreen({super.key});
+  final String cityName;
+
+  const DetailsScreen({
+    Key? key,
+    required this.cityName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final themeData = Provider.of<ThemeProvider>(context);
 
     return Scaffold(
+      appBar: LocationAppBar(
+          city: cityName, location: "Current Location", isArrowVisible: true),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
@@ -28,7 +35,9 @@ class DetailsScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const LocationAppBar(),
+                //TODO:2 I am not currently looking at the user, but this screen should have a back button.
+                /// more reason why you need to have a solid appbar you can reuse across the app
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

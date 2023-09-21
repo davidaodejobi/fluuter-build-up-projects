@@ -17,6 +17,7 @@ class SettingsScreen extends StatelessWidget {
     final themeDataListen = Provider.of<ThemeProvider>(context, listen: false);
 
     return Scaffold(
+      appBar: const SettingsAppBar(),
       body: SafeArea(
         child: SizedBox.expand(
           child: Padding(
@@ -27,7 +28,6 @@ class SettingsScreen extends StatelessWidget {
             ),
             child: ListView(
               children: [
-                const SettingsAppBar(),
                 const SizedBox(
                   height: 30.0,
                 ),
